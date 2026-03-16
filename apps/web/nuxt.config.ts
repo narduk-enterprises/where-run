@@ -8,6 +8,9 @@ export default defineNuxtConfig({
   // Extend the published Narduk Nuxt Layer
   extends: ['@narduk-enterprises/narduk-nuxt-template-layer'],
 
+  // App-level CSS override (athletic design system with Barlow fonts)
+  css: ['~/assets/css/main.css'],
+
   // nitro-cloudflare-dev proxies D1 bindings to the local dev server
   modules: ['nitro-cloudflare-dev'],
 
@@ -65,5 +68,16 @@ export default defineNuxtConfig({
     cloudflare: {
       baseURL: process.env.SITE_URL || 'https://where-run.nard.uk',
     },
+  },
+
+  routeRules: {
+    // ISR caching for race detail and state pages
+    '/race/**': { swr: 3600 },
+    '/states/**': { swr: 3600 },
+    // API caching for read-only endpoints
+    '/api/races': { swr: 600 },
+    '/api/races/states': { swr: 3600 },
+    '/api/races/nearby': { swr: 600 },
+    '/api/races/by-state/**': { swr: 1800 },
   },
 })
