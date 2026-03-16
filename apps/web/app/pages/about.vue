@@ -5,8 +5,18 @@ useSeo({
   title: 'About — Where Run',
   description:
     'Where Run aggregates running race data from across the United States to help runners discover their next event. Daily updates, 50 states, all distances.',
-  keywords: ['about where run', 'running race finder', 'race aggregator', 'running events platform', 'find races'],
-  ogImage: { title: 'About Where Run', description: 'Race discovery platform', icon: 'i-lucide-info' },
+  keywords: [
+    'about where run',
+    'running race finder',
+    'race aggregator',
+    'running events platform',
+    'find races',
+  ],
+  ogImage: {
+    title: 'About Where Run',
+    description: 'Race discovery platform',
+    icon: 'i-lucide-info',
+  },
 })
 useWebPageSchema({
   name: 'About Where Run',
@@ -26,17 +36,20 @@ const steps = [
   {
     icon: 'i-lucide-database',
     title: 'Aggregate',
-    description: 'We automatically scrape race data from trusted sources like RunSignUp, updating our database daily with fresh events.',
+    description:
+      'We automatically scrape race data from trusted sources like RunSignUp, updating our database daily with fresh events.',
   },
   {
     icon: 'i-lucide-filter',
     title: 'Organize',
-    description: 'Races are categorized by distance (5K, 10K, Half, Marathon, Ultra, Trail) and location across all 50 states plus DC.',
+    description:
+      'Races are categorized by distance (5K, 10K, Half, Marathon, Ultra, Trail) and location across all 50 states plus DC.',
   },
   {
     icon: 'i-lucide-search',
     title: 'Discover',
-    description: 'Use our map-based search powered by Apple Maps to find races near you, or browse by state and distance type.',
+    description:
+      'Use our map-based search powered by Apple Maps to find races near you, or browse by state and distance type.',
   },
 ]
 
@@ -54,7 +67,9 @@ const techStack = [
   <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
     <!-- Header -->
     <div class="mb-16 text-center">
-      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2">
+      <div
+        class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2"
+      >
         <UIcon name="i-lucide-info" class="text-primary size-4" />
         <span class="text-primary text-sm font-semibold">About</span>
       </div>
@@ -100,7 +115,11 @@ const techStack = [
     <div class="mb-12">
       <h2 class="text-default mb-8 text-center text-2xl font-bold">How It Works</h2>
       <div class="grid gap-6 sm:grid-cols-3">
-        <div v-for="(step, i) in steps" :key="step.title" class="card-base relative p-6 text-center">
+        <div
+          v-for="(step, i) in steps"
+          :key="step.title"
+          class="card-base relative p-6 text-center"
+        >
           <!-- Step number -->
           <div class="countdown-badge mx-auto mb-4">{{ i + 1 }}</div>
           <UIcon :name="step.icon" class="text-primary mx-auto mb-3 size-8" />
@@ -134,14 +153,10 @@ const techStack = [
     <div class="text-center">
       <div class="flex items-center justify-center gap-4">
         <NuxtLink to="/search">
-          <UButton color="primary" size="lg" icon="i-lucide-search">
-            Start Finding Races
-          </UButton>
+          <UButton color="primary" size="lg" icon="i-lucide-search"> Start Finding Races </UButton>
         </NuxtLink>
         <NuxtLink to="/states">
-          <UButton variant="outline" size="lg" icon="i-lucide-map">
-            Browse by State
-          </UButton>
+          <UButton variant="outline" size="lg" icon="i-lucide-map"> Browse by State </UButton>
         </NuxtLink>
       </div>
     </div>

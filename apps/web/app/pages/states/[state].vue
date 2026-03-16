@@ -55,10 +55,16 @@ function formatDate(dateStr: string) {
 <template>
   <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
     <!-- Breadcrumb -->
-    <div class="mb-8 flex items-center gap-2 text-sm text-muted" role="navigation" aria-label="Breadcrumb">
+    <div
+      class="mb-8 flex items-center gap-2 text-sm text-muted"
+      role="navigation"
+      aria-label="Breadcrumb"
+    >
       <NuxtLink to="/" class="hover:text-default transition-colors cursor-pointer">Home</NuxtLink>
       <UIcon name="i-lucide-chevron-right" class="size-3 text-dimmed" />
-      <NuxtLink to="/states" class="hover:text-default transition-colors cursor-pointer">States</NuxtLink>
+      <NuxtLink to="/states" class="hover:text-default transition-colors cursor-pointer"
+        >States</NuxtLink
+      >
       <UIcon name="i-lucide-chevron-right" class="size-3 text-dimmed" />
       <span class="text-default font-medium">{{ stateName }}</span>
     </div>
@@ -85,7 +91,12 @@ function formatDate(dateStr: string) {
         :to="`/search?state=${stateCode}&raceType=${t.type}`"
         class="cursor-pointer"
       >
-        <UBadge variant="outline" color="neutral" size="md" class="hover:border-primary transition-colors">
+        <UBadge
+          variant="outline"
+          color="neutral"
+          size="md"
+          class="hover:border-primary transition-colors"
+        >
           <UIcon :name="raceTypeIcon(t.type)" class="mr-1 size-3.5" />
           {{ formatRaceType(t.type) }} ({{ t.count }})
         </UBadge>

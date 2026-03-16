@@ -28,7 +28,6 @@ export default defineEventHandler(async (event) => {
 
   const { lat, lng, radius: radiusMiles, limit } = parsed.data
 
-
   const db = useDatabase(event)
 
   // Only show upcoming races

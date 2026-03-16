@@ -661,10 +661,9 @@ Deployment is done locally via \`pnpm run ship\` (see AGENTS.md).
       }
       if (devSet.length > 0) {
         try {
-          execSync(
-            `doppler secrets set ${devSet.join(' ')} --project ${APP_NAME} --config dev`,
-            { stdio: 'pipe' },
-          )
+          execSync(`doppler secrets set ${devSet.join(' ')} --project ${APP_NAME} --config dev`, {
+            stdio: 'pipe',
+          })
           console.log(
             `  ✅ Synced ${devSet.length} credentials (dev): ${devSet.map((s) => s.split('=')[0]).join(', ')}`,
           )

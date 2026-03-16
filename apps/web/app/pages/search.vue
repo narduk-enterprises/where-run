@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const { toMapItems, createRacePin, selectedRaceId, defaultCenter, defaultZoomSpan } = useRaceMap()
 const {
   searchQuery,
@@ -14,12 +13,28 @@ const { fetchRaces } = useRaces()
 
 useSeo({
   title: 'Search Running Races — Where Run',
-  description: 'Search and discover running races across the United States. Filter by state, distance type, and more. Map-based race discovery.',
-  keywords: ['search running races', 'find races near me', 'race search', '5K near me', 'marathon search', 'trail run search', 'running events'],
-  ogImage: { title: 'Search Races', description: 'Map-based race discovery', icon: 'i-lucide-search' },
+  description:
+    'Search and discover running races across the United States. Filter by state, distance type, and more. Map-based race discovery.',
+  keywords: [
+    'search running races',
+    'find races near me',
+    'race search',
+    '5K near me',
+    'marathon search',
+    'trail run search',
+    'running events',
+  ],
+  ogImage: {
+    title: 'Search Races',
+    description: 'Map-based race discovery',
+    icon: 'i-lucide-search',
+  },
   canonicalUrl: 'https://where-run.nard.uk/search',
 })
-useWebPageSchema({ name: 'Race Search', description: 'Search running races across the United States with map-based discovery.' })
+useWebPageSchema({
+  name: 'Race Search',
+  description: 'Search running races across the United States with map-based discovery.',
+})
 
 // Reactive data fetch via composable
 const { data, status } = fetchRaces({
@@ -27,7 +42,9 @@ const { data, status } = fetchRaces({
 })
 
 const races = computed(() => data.value?.races || [])
-const pagination = computed(() => data.value?.pagination || { page: 1, limit: 20, total: 0, totalPages: 0 })
+const pagination = computed(
+  () => data.value?.pagination || { page: 1, limit: 20, total: 0, totalPages: 0 },
+)
 const mapItems = computed(() => toMapItems(races.value))
 
 // Read initial state from URL query
@@ -45,7 +62,10 @@ const stateOptions = computed(() => {
     label: name,
     value: abbr,
   }))
-  return [{ label: 'All States', value: undefined }, ...states.sort((a, b) => a.label.localeCompare(b.label))]
+  return [
+    { label: 'All States', value: undefined },
+    ...states.sort((a, b) => a.label.localeCompare(b.label)),
+  ]
 })
 
 function daysUntil(dateStr: string) {
@@ -139,7 +159,9 @@ function daysUntil(dateStr: string) {
 
         <!-- Map overlay with race count -->
         <div v-if="status === 'success' && races.length" class="absolute bottom-4 left-4">
-          <div class="glass rounded-lg px-3 py-1.5 text-xs font-medium text-default shadow-elevated">
+          <div
+            class="glass rounded-lg px-3 py-1.5 text-xs font-medium text-default shadow-elevated"
+          >
             <UIcon name="i-lucide-map-pin" class="text-primary mr-1 inline size-3" />
             {{ races.length }} races on map
           </div>
@@ -176,7 +198,9 @@ function daysUntil(dateStr: string) {
             <!-- Date badge -->
             <div class="flex w-14 shrink-0 flex-col items-center rounded-xl bg-primary/10 py-2">
               <span class="text-primary text-[10px] font-bold uppercase">
-                {{ new Date(race.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short' }) }}
+                {{
+                  new Date(race.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short' })
+                }}
               </span>
               <span class="text-primary text-lg font-bold leading-tight">
                 {{ new Date(race.date + 'T00:00:00').getDate() }}
@@ -185,7 +209,9 @@ function daysUntil(dateStr: string) {
 
             <!-- Details -->
             <div class="min-w-0 flex-1">
-              <h3 class="text-default mb-1 truncate text-sm font-bold group-hover:text-primary transition-colors">
+              <h3
+                class="text-default mb-1 truncate text-sm font-bold group-hover:text-primary transition-colors"
+              >
                 {{ race.name }}
               </h3>
 
@@ -211,7 +237,10 @@ function daysUntil(dateStr: string) {
         </div>
 
         <!-- Pagination -->
-        <div v-if="pagination.totalPages > 1" class="flex items-center justify-center gap-2 border-t border-default p-4">
+        <div
+          v-if="pagination.totalPages > 1"
+          class="flex items-center justify-center gap-2 border-t border-default p-4"
+        >
           <UButton
             variant="ghost"
             icon="i-lucide-chevron-left"

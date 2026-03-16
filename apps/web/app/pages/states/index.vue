@@ -5,7 +5,14 @@ useSeo({
   title: 'Running Races by State — Where Run',
   description:
     'Browse running races across all 50 US states and DC. Find 5Ks, 10Ks, half marathons, marathons, ultras, and trail runs in every state.',
-  keywords: ['running races by state', 'races near me', 'state running events', 'US running races', 'find races', 'local running events'],
+  keywords: [
+    'running races by state',
+    'races near me',
+    'state running events',
+    'US running races',
+    'find races',
+    'local running events',
+  ],
   ogImage: {
     title: 'Browse Races by State',
     description: 'Running races across all 50 states',
@@ -39,7 +46,9 @@ const totalRaces = computed(() => {
   <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
     <!-- Header -->
     <div class="mb-12 text-center">
-      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2">
+      <div
+        class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2"
+      >
         <UIcon name="i-lucide-map" class="text-primary size-4" />
         <span class="text-primary text-sm font-semibold">All States</span>
       </div>
@@ -79,9 +88,7 @@ const totalRaces = computed(() => {
     <!-- CTA -->
     <div class="mt-12 text-center">
       <NuxtLink to="/search">
-        <UButton color="primary" size="lg" icon="i-lucide-search">
-          Search All Races
-        </UButton>
+        <UButton color="primary" size="lg" icon="i-lucide-search"> Search All Races </UButton>
       </NuxtLink>
     </div>
   </div>

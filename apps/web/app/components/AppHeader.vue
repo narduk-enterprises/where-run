@@ -17,18 +17,14 @@ function isActive(to: string) {
 </script>
 
 <template>
-  <div
-    class="sticky top-0 z-40 border-b border-default bg-default/80 backdrop-blur-xl"
-  >
+  <div class="sticky top-0 z-40 border-b border-default bg-default/80 backdrop-blur-xl">
     <div class="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6">
       <!-- Logo -->
       <NuxtLink to="/" class="flex items-center gap-2.5 cursor-pointer">
         <div class="flex size-8 items-center justify-center rounded-lg bg-primary">
           <UIcon name="i-lucide-map-pin" class="size-4.5 text-white" />
         </div>
-        <span class="font-display text-lg font-bold text-default tracking-tight">
-          Where Run
-        </span>
+        <span class="font-display text-lg font-bold text-default tracking-tight"> Where Run </span>
       </NuxtLink>
 
       <!-- Desktop Nav -->

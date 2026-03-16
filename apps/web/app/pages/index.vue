@@ -5,7 +5,18 @@ useSeo({
   title: 'Where Run — Find Running Races Near You',
   description:
     'Discover local running races across the United States. Search 5Ks, 10Ks, half marathons, marathons, ultras, and trail runs near you.',
-  keywords: ['running races', 'race finder', '5K', '10K', 'half marathon', 'marathon', 'trail run', 'race search', 'local races', 'running events'],
+  keywords: [
+    'running races',
+    'race finder',
+    '5K',
+    '10K',
+    'half marathon',
+    'marathon',
+    'trail run',
+    'race search',
+    'local races',
+    'running events',
+  ],
   ogImage: {
     title: 'Where Run',
     description: 'Find Your Next Race',
@@ -61,35 +72,58 @@ function formatDate(dateStr: string) {
     <!-- Hero Section -->
     <section class="relative overflow-hidden py-20 sm:py-32">
       <!-- Animated gradient background -->
-      <div class="animate-gradient absolute inset-0 bg-linear-to-br from-primary/15 via-transparent to-primary/5" />
-      <div class="absolute top-0 right-0 h-[500px] w-[500px] translate-x-1/3 -translate-y-1/3 rounded-full bg-primary/8 blur-3xl" />
-      <div class="absolute bottom-0 left-0 h-80 w-80 -translate-x-1/3 translate-y-1/3 rounded-full bg-primary/5 blur-3xl" />
+      <div
+        class="animate-gradient absolute inset-0 bg-linear-to-br from-primary/15 via-transparent to-primary/5"
+      />
+      <div
+        class="absolute top-0 right-0 h-[500px] w-[500px] translate-x-1/3 -translate-y-1/3 rounded-full bg-primary/8 blur-3xl"
+      />
+      <div
+        class="absolute bottom-0 left-0 h-80 w-80 -translate-x-1/3 translate-y-1/3 rounded-full bg-primary/5 blur-3xl"
+      />
 
       <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
         <div class="text-center">
-          <div class="animate-fade-up mb-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-5 py-2">
+          <div
+            class="animate-fade-up mb-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-5 py-2"
+          >
             <UIcon name="i-lucide-map-pin" class="text-primary size-4" />
-            <span class="text-primary text-sm font-semibold tracking-wide uppercase">Race Finder</span>
+            <span class="text-primary text-sm font-semibold tracking-wide uppercase"
+              >Race Finder</span
+            >
           </div>
 
-          <h1 class="animate-fade-up animate-fade-up-delay-1 mb-6 text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl">
+          <h1
+            class="animate-fade-up animate-fade-up-delay-1 mb-6 text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
+          >
             <span class="text-default">Find Your</span>
             <br />
             <span class="gradient-text-warm">Next Race</span>
           </h1>
 
-          <p class="animate-fade-up animate-fade-up-delay-2 text-muted mx-auto mb-10 max-w-2xl text-lg sm:text-xl leading-relaxed">
-            Discover running races across the United States. From local 5Ks to iconic marathons — find the perfect race and lace up.
+          <p
+            class="animate-fade-up animate-fade-up-delay-2 text-muted mx-auto mb-10 max-w-2xl text-lg sm:text-xl leading-relaxed"
+          >
+            Discover running races across the United States. From local 5Ks to iconic marathons —
+            find the perfect race and lace up.
           </p>
 
           <!-- Search CTA -->
           <div class="animate-fade-up animate-fade-up-delay-3 mx-auto max-w-xl">
             <NuxtLink to="/search" class="cursor-pointer">
-              <div class="gradient-border card-base group flex items-center gap-3 p-4 transition-all hover:shadow-overlay">
-                <UIcon name="i-lucide-search" class="text-muted size-5 group-hover:text-primary transition-colors" />
+              <div
+                class="gradient-border card-base group flex items-center gap-3 p-4 transition-all hover:shadow-overlay"
+              >
+                <UIcon
+                  name="i-lucide-search"
+                  class="text-muted size-5 group-hover:text-primary transition-colors"
+                />
                 <span class="text-dimmed text-left flex-1">Search by name, city, or state...</span>
                 <UKbd class="hidden sm:inline-flex">⌘K</UKbd>
-                <UIcon name="i-lucide-arrow-right" class="text-dimmed size-4 transition-transform group-hover:translate-x-1" />
+                <UIcon
+                  name="i-lucide-arrow-right"
+                  class="text-dimmed size-4 transition-transform group-hover:translate-x-1"
+                />
               </div>
             </NuxtLink>
           </div>
@@ -124,7 +158,9 @@ function formatDate(dateStr: string) {
           :to="`/search?raceType=${rt.type}`"
           class="race-card group flex flex-col items-center gap-3 p-6 cursor-pointer"
         >
-          <div class="flex size-14 items-center justify-center rounded-2xl bg-primary/10 transition-colors group-hover:bg-primary/20">
+          <div
+            class="flex size-14 items-center justify-center rounded-2xl bg-primary/10 transition-colors group-hover:bg-primary/20"
+          >
             <UIcon :name="rt.icon" class="text-primary size-7" />
           </div>
           <div class="text-center">
@@ -171,7 +207,9 @@ function formatDate(dateStr: string) {
                 </UBadge>
               </div>
 
-              <h3 class="text-default mb-3 line-clamp-2 text-base font-bold group-hover:text-primary transition-colors">
+              <h3
+                class="text-default mb-3 line-clamp-2 text-base font-bold group-hover:text-primary transition-colors"
+              >
                 {{ race.name }}
               </h3>
 
@@ -214,7 +252,9 @@ function formatDate(dateStr: string) {
             class="card-base group flex items-center justify-between p-4 cursor-pointer"
           >
             <div>
-              <div class="text-default text-sm font-bold group-hover:text-primary transition-colors">
+              <div
+                class="text-default text-sm font-bold group-hover:text-primary transition-colors"
+              >
                 {{ STATE_NAMES[st.state] || st.state }}
               </div>
               <div class="text-dimmed text-xs">
@@ -236,18 +276,15 @@ function formatDate(dateStr: string) {
       <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
         <h2 class="text-default mb-4 text-3xl font-bold sm:text-4xl">Ready to Find Your Race?</h2>
         <p class="text-muted mb-8 text-lg max-w-xl mx-auto">
-          We aggregate race data from across the country, updated daily, so you never miss a local event.
+          We aggregate race data from across the country, updated daily, so you never miss a local
+          event.
         </p>
         <div class="flex items-center justify-center gap-4">
           <NuxtLink to="/search">
-            <UButton size="xl" color="primary" icon="i-lucide-search">
-              Search Races
-            </UButton>
+            <UButton size="xl" color="primary" icon="i-lucide-search"> Search Races </UButton>
           </NuxtLink>
           <NuxtLink to="/states">
-            <UButton size="xl" variant="outline" icon="i-lucide-map">
-              Browse States
-            </UButton>
+            <UButton size="xl" variant="outline" icon="i-lucide-map"> Browse States </UButton>
           </NuxtLink>
         </div>
       </div>

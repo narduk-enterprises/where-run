@@ -23,10 +23,7 @@ export default defineEventHandler(async (event) => {
   const db = useDatabase(event)
   const today = new Date().toISOString().split('T')[0] ?? ''
 
-  const conditions = [
-    sql`${races.date} >= ${today}`,
-    sql`${races.isVirtual} = 0`,
-  ]
+  const conditions = [sql`${races.date} >= ${today}`, sql`${races.isVirtual} = 0`]
 
   if (parsed.data.state) {
     conditions.push(sql`${races.state} = ${parsed.data.state}`)

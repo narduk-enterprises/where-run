@@ -11,24 +11,32 @@ const { data: raceData, status } = await fetchRaceById(raceId.value)
 const race = computed(() => raceData.value?.race)
 
 // SEO — evaluated during SSR since data is awaited
-const seoTitle = computed(() => race.value ? `${race.value.name} — Where Run` : 'Race — Where Run')
-const seoDesc = computed(() => race.value
-  ? `${race.value.name} on ${formatDateLong(race.value.date)} in ${race.value.city}, ${STATE_NAMES[race.value.state] || race.value.state}. Register for this ${formatRaceType(race.value.raceType)} race.`
-  : 'Find running races across the United States.')
+const seoTitle = computed(() =>
+  race.value ? `${race.value.name} — Where Run` : 'Race — Where Run',
+)
+const seoDesc = computed(() =>
+  race.value
+    ? `${race.value.name} on ${formatDateLong(race.value.date)} in ${race.value.city}, ${STATE_NAMES[race.value.state] || race.value.state}. Register for this ${formatRaceType(race.value.raceType)} race.`
+    : 'Find running races across the United States.',
+)
 
 useSeo({
   title: seoTitle.value,
   description: seoDesc.value,
-  keywords: race.value ? [
-    race.value.name,
-    `${race.value.city} ${formatRaceType(race.value.raceType)}`,
-    `${STATE_NAMES[race.value.state]} running race`,
-    `${formatRaceType(race.value.raceType)} race`,
-    `running race ${race.value.city}`,
-  ] : ['running races', 'race finder'],
+  keywords: race.value
+    ? [
+        race.value.name,
+        `${race.value.city} ${formatRaceType(race.value.raceType)}`,
+        `${STATE_NAMES[race.value.state]} running race`,
+        `${formatRaceType(race.value.raceType)} race`,
+        `running race ${race.value.city}`,
+      ]
+    : ['running races', 'race finder'],
   ogImage: {
     title: race.value?.name || 'Race Details',
-    description: race.value ? `${formatRaceType(race.value.raceType)} · ${race.value.city}, ${race.value.state}` : 'Where Run',
+    description: race.value
+      ? `${formatRaceType(race.value.raceType)} · ${race.value.city}, ${race.value.state}`
+      : 'Where Run',
     icon: 'i-lucide-trophy',
   },
 })
@@ -37,28 +45,33 @@ if (race.value) {
   useSchemaOrg([
     {
       '@type': 'SportsEvent',
-      'name': race.value.name,
-      'startDate': race.value.date,
-      'location': {
+      name: race.value.name,
+      startDate: race.value.date,
+      location: {
         '@type': 'Place',
-        'name': `${race.value.city}, ${STATE_NAMES[race.value.state] || race.value.state}`,
-        'address': {
+        name: `${race.value.city}, ${STATE_NAMES[race.value.state] || race.value.state}`,
+        address: {
           '@type': 'PostalAddress',
-          'addressLocality': race.value.city,
-          'addressRegion': race.value.state,
-          'addressCountry': 'US',
+          addressLocality: race.value.city,
+          addressRegion: race.value.state,
+          addressCountry: 'US',
         },
       },
       ...(race.value.url && { url: race.value.url }),
       ...(race.value.description && { description: race.value.description }),
-      'sport': 'Running',
+      sport: 'Running',
     },
     {
       '@type': 'BreadcrumbList',
-      'itemListElement': [
-        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://where-run.nard.uk/' },
-        { '@type': 'ListItem', 'position': 2, 'name': 'Search', 'item': 'https://where-run.nard.uk/search' },
-        { '@type': 'ListItem', 'position': 3, 'name': race.value.name },
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://where-run.nard.uk/' },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Search',
+          item: 'https://where-run.nard.uk/search',
+        },
+        { '@type': 'ListItem', position: 3, name: race.value.name },
       ],
     },
   ])
@@ -75,7 +88,6 @@ const { data: nearbyData } = fetchNearbyRaces(
   race.value?.longitude || 0,
   50,
 )
-
 
 const nearbyRaces = computed(() => {
   if (!nearbyData.value?.races) return []
@@ -153,12 +165,20 @@ function formatShortDate(dateStr: string) {
         </ClientOnly>
 
         <!-- Gradient overlay at bottom -->
-        <div class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-default to-transparent" />
+        <div
+          class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-default to-transparent"
+        />
 
         <!-- Back button -->
         <div class="absolute top-4 left-4">
           <NuxtLink to="/search">
-            <UButton variant="solid" color="neutral" icon="i-lucide-arrow-left" size="sm" class="shadow-elevated">
+            <UButton
+              variant="solid"
+              color="neutral"
+              icon="i-lucide-arrow-left"
+              size="sm"
+              class="shadow-elevated"
+            >
               Back
             </UButton>
           </NuxtLink>
@@ -166,12 +186,20 @@ function formatShortDate(dateStr: string) {
       </div>
 
       <!-- Content -->
-      <div class="mx-auto max-w-4xl px-4 sm:px-6" style="margin-top: -2rem;">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6" style="margin-top: -2rem">
         <!-- Breadcrumb -->
-        <div class="mb-4 flex items-center gap-2 text-xs text-muted" role="navigation" aria-label="Breadcrumb">
-          <NuxtLink to="/" class="hover:text-default transition-colors cursor-pointer">Home</NuxtLink>
+        <div
+          class="mb-4 flex items-center gap-2 text-xs text-muted"
+          role="navigation"
+          aria-label="Breadcrumb"
+        >
+          <NuxtLink to="/" class="hover:text-default transition-colors cursor-pointer"
+            >Home</NuxtLink
+          >
           <UIcon name="i-lucide-chevron-right" class="size-3 text-dimmed" />
-          <NuxtLink to="/search" class="hover:text-default transition-colors cursor-pointer">Search</NuxtLink>
+          <NuxtLink to="/search" class="hover:text-default transition-colors cursor-pointer"
+            >Search</NuxtLink
+          >
           <UIcon name="i-lucide-chevron-right" class="size-3 text-dimmed" />
           <span class="text-default font-medium truncate max-w-[200px]">{{ race.name }}</span>
         </div>
@@ -187,9 +215,7 @@ function formatShortDate(dateStr: string) {
             <UBadge v-if="race.distanceMeters" variant="outline" color="neutral" size="md">
               {{ formatDistance(race.distanceMeters) }}
             </UBadge>
-            <UBadge v-if="race.isVirtual" variant="subtle" color="info" size="md">
-              Virtual
-            </UBadge>
+            <UBadge v-if="race.isVirtual" variant="subtle" color="info" size="md"> Virtual </UBadge>
             <span class="countdown-badge ml-auto">
               <UIcon name="i-lucide-clock" class="size-3" />
               {{ daysUntil(race.date) > 0 ? `${daysUntil(race.date)} days away` : 'Race Day!' }}
@@ -217,7 +243,9 @@ function formatShortDate(dateStr: string) {
             </div>
             <div class="rounded-xl bg-muted/50 p-3 text-center">
               <UIcon name="i-lucide-ruler" class="text-primary mx-auto mb-1 size-5" />
-              <div class="text-default text-sm font-bold">{{ race.distanceMeters ? formatDistance(race.distanceMeters) : '—' }}</div>
+              <div class="text-default text-sm font-bold">
+                {{ race.distanceMeters ? formatDistance(race.distanceMeters) : '—' }}
+              </div>
               <div class="text-dimmed text-xs">Distance</div>
             </div>
           </div>
@@ -275,7 +303,9 @@ function formatShortDate(dateStr: string) {
               :to="`/race/${nearby.id}`"
               class="card-base group p-4 cursor-pointer"
             >
-              <h3 class="text-default mb-2 line-clamp-2 text-sm font-bold group-hover:text-primary transition-colors">
+              <h3
+                class="text-default mb-2 line-clamp-2 text-sm font-bold group-hover:text-primary transition-colors"
+              >
                 {{ nearby.name }}
               </h3>
               <div class="text-muted flex items-center gap-3 text-xs">

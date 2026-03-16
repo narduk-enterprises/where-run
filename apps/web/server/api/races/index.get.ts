@@ -74,14 +74,7 @@ export default defineEventHandler(async (event) => {
   const where = conditions.length > 0 ? and(...conditions) : undefined
 
   const [items, countResult] = await Promise.all([
-    db
-      .select()
-      .from(races)
-      .where(where)
-      .orderBy(races.date)
-      .limit(limit)
-      .offset(offset)
-      .all(),
+    db.select().from(races).where(where).orderBy(races.date).limit(limit).offset(offset).all(),
     db
       .select({ count: sql<number>`count(*)` })
       .from(races)

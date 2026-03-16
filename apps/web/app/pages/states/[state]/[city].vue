@@ -64,12 +64,21 @@ function formatDate(dateStr: string) {
 <template>
   <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
     <!-- Breadcrumb -->
-    <div class="mb-8 flex items-center gap-2 text-sm text-muted" role="navigation" aria-label="Breadcrumb">
+    <div
+      class="mb-8 flex items-center gap-2 text-sm text-muted"
+      role="navigation"
+      aria-label="Breadcrumb"
+    >
       <NuxtLink to="/" class="hover:text-default transition-colors cursor-pointer">Home</NuxtLink>
       <UIcon name="i-lucide-chevron-right" class="size-3 text-dimmed" />
-      <NuxtLink to="/states" class="hover:text-default transition-colors cursor-pointer">States</NuxtLink>
+      <NuxtLink to="/states" class="hover:text-default transition-colors cursor-pointer"
+        >States</NuxtLink
+      >
       <UIcon name="i-lucide-chevron-right" class="size-3 text-dimmed" />
-      <NuxtLink :to="`/states/${stateCode.toLowerCase()}`" class="hover:text-default transition-colors cursor-pointer">
+      <NuxtLink
+        :to="`/states/${stateCode.toLowerCase()}`"
+        class="hover:text-default transition-colors cursor-pointer"
+      >
         {{ stateName }}
       </NuxtLink>
       <UIcon name="i-lucide-chevron-right" class="size-3 text-dimmed" />
