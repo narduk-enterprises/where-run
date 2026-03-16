@@ -25,8 +25,9 @@ export const races = sqliteTable('races', {
   registrationUrl: text('registration_url'), // Direct registration link
   description: text('description'),
   logoUrl: text('logo_url'),
-  source: text('source').notNull(), // 'runsignup' | 'manual'
+  source: text('source').notNull(), // 'runsignup' | 'active' | 'manual'
   sourceId: text('source_id').notNull(), // External ID from source
+  dedupeKey: text('dedupe_key'), // Cross-source dedup: LOWER(name)+date+state
   participantCount: integer('participant_count'),
   isVirtual: integer('is_virtual').notNull().default(0),
   createdAt: text('created_at').notNull(),

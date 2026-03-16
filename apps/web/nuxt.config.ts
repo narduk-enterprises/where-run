@@ -31,6 +31,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Server-only
     cronSecret: process.env.CRON_SECRET || '',
+    runsignupApiKey: process.env.RUNSIGNUP_API_KEY || 'demo',
+    activeComApiKey: process.env.ACTIVE_COM_API_KEY || '',
     googleServiceAccountKey: process.env.GSC_SERVICE_ACCOUNT_JSON || '',
     posthogApiKey: process.env.POSTHOG_PERSONAL_API_KEY || '',
     gaPropertyId: process.env.GA_PROPERTY_ID || '',

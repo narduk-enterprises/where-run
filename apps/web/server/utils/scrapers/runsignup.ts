@@ -1,13 +1,18 @@
 /**
- * RunSignUp API Client
+ * RunSignUp API Client — Enhanced
  *
  * Fetches upcoming running races from the RunSignUp public REST API.
  * API docs: https://runsignup.com/API
  *
- * No authentication required. Returns JSON race data.
+ * Supports:
+ * - Up to 500 results per page (API max is 1000)
+ * - Multi-page pagination with hasMore tracking
+ * - Proper API key via runtimeConfig (falls back to demo)
+ * - Slug + dedupeKey generation for cross-source dedup
  */
 
 import type { NewRace } from '#server/database/schema'
+import { generateSlug, generateDedupeKey } from './types'
 
 const API_BASE = 'https://runsignup.com/Rest/races'
 
@@ -53,17 +58,6 @@ function classifyRaceType(distanceMeters: number | null): string {
   if (distanceMeters <= 43000) return 'marathon'
   if (distanceMeters > 43000) return 'ultra'
   return 'other'
-}
-
-/** Generate a URL-safe slug from race name, city, state, and date */
-function generateSlug(name: string, city: string, state: string, date: string): string {
-  const raw = `${name}-${city}-${state}-${date}`
-  return raw
-    .toLowerCase()
-    .replaceAll(/[^a-z0-9\s-]/g, '')
-    .replaceAll(/\s+/g, '-')
-    .replaceAll(/-+/g, '-')
-    .slice(0, 120) // keep slugs reasonable length
 }
 
 /** Convert RunSignUp distance + units to meters */
@@ -120,10 +114,11 @@ function normalizeRace(raw: RunSignUpRace): NewRace | null {
     raceType,
     url: raw.external_race_url || raw.url || null,
     registrationUrl: raw.url ? `https://runsignup.com/Race/${raw.race_id}` : null,
-    description: raw.description?.slice(0, 2000) || null, // Truncate long descriptions
+    description: raw.description?.slice(0, 2000) || null,
     logoUrl: raw.logo_url || null,
     source: 'runsignup',
     sourceId: String(raw.race_id),
+    dedupeKey: generateDedupeKey(raw.name, date, state),
     participantCount: null,
     isVirtual: raw.is_virtual === 'T' ? 1 : 0,
     createdAt: now,
@@ -133,7 +128,7 @@ function normalizeRace(raw: RunSignUpRace): NewRace | null {
 
 /**
  * Fetch upcoming races from RunSignUp API.
- * Supports pagination and geographic filtering by state.
+ * Enhanced: 500/page, multi-page pagination, hasMore tracking.
  */
 export async function fetchRunSignUpRaces(options: {
   state?: string
@@ -141,13 +136,21 @@ export async function fetchRunSignUpRaces(options: {
   resultsPerPage?: number
   startDate?: string
   endDate?: string
-}): Promise<{ races: NewRace[]; totalResults: number }> {
-  const { state, page = 1, resultsPerPage = 50, startDate, endDate } = options
+  apiKey?: string
+}): Promise<{ races: NewRace[]; totalResults: number; hasMore: boolean }> {
+  const {
+    state,
+    page = 1,
+    resultsPerPage = 500,
+    startDate,
+    endDate,
+    apiKey,
+  } = options
 
   const params = new URLSearchParams({
     format: 'json',
     api_version: '2',
-    api_key: 'demo',
+    api_key: apiKey || 'demo',
     events: 'T',
     page: String(page),
     results_per_page: String(resultsPerPage),
@@ -181,63 +184,22 @@ export async function fetchRunSignUpRaces(options: {
     .map((r) => normalizeRace(r.race))
     .filter((r): r is NewRace => r !== null)
 
+  const totalResults = data.total_results || 0
+  const hasMore = page * resultsPerPage < totalResults
+
   return {
     races: normalized,
-    totalResults: data.total_results || 0,
+    totalResults,
+    hasMore,
   }
 }
 
-/** US states to scrape — we cycle through them */
+/** US states to scrape — all 50 + DC */
 export const US_STATES = [
-  'AL',
-  'AK',
-  'AZ',
-  'AR',
-  'CA',
-  'CO',
-  'CT',
-  'DE',
-  'FL',
-  'GA',
-  'HI',
-  'ID',
-  'IL',
-  'IN',
-  'IA',
-  'KS',
-  'KY',
-  'LA',
-  'ME',
-  'MD',
-  'MA',
-  'MI',
-  'MN',
-  'MS',
-  'MO',
-  'MT',
-  'NE',
-  'NV',
-  'NH',
-  'NJ',
-  'NM',
-  'NY',
-  'NC',
-  'ND',
-  'OH',
-  'OK',
-  'OR',
-  'PA',
-  'RI',
-  'SC',
-  'SD',
-  'TN',
-  'TX',
-  'UT',
-  'VT',
-  'VA',
-  'WA',
-  'WV',
-  'WI',
-  'WY',
+  'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+  'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+  'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+  'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+  'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY',
   'DC',
 ]
