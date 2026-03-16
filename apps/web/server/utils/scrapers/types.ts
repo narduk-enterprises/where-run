@@ -44,5 +44,8 @@ export function generateSlug(name: string, city: string, state: string, date: st
 
 /** Generate a deduplication key for cross-source matching */
 export function generateDedupeKey(name: string, date: string, state: string): string {
-  return (name.toLowerCase().replaceAll(/[^a-z0-9]/g, '') + date + state.toUpperCase()).slice(0, 200)
+  return (name.toLowerCase().replaceAll(/[^a-z0-9]/g, '') + date + state.toUpperCase()).slice(
+    0,
+    200,
+  )
 }

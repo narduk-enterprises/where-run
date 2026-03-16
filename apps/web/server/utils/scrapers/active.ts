@@ -50,12 +50,25 @@ interface ActiveComResponse {
 /** Classify race type from Active.com asset name and tags */
 function classifyFromName(name: string, tags: string[]): string {
   const combined = (name + ' ' + tags.join(' ')).toLowerCase()
-  if (combined.includes('ultra') || combined.includes('100mi') || combined.includes('50mi') || combined.includes('100k') || combined.includes('50k')) return 'ultra'
+  if (
+    combined.includes('ultra') ||
+    combined.includes('100mi') ||
+    combined.includes('50mi') ||
+    combined.includes('100k') ||
+    combined.includes('50k')
+  )
+    return 'ultra'
   if (combined.includes('trail')) return 'trail'
   if (combined.includes('marathon') && !combined.includes('half')) return 'marathon'
-  if (combined.includes('half marathon') || combined.includes('half-marathon') || combined.includes('13.1')) return 'half'
+  if (
+    combined.includes('half marathon') ||
+    combined.includes('half-marathon') ||
+    combined.includes('13.1')
+  )
+    return 'half'
   if (combined.includes('10k') || combined.includes('10 k')) return '10k'
-  if (combined.includes('5k') || combined.includes('5 k') || combined.includes('fun run')) return '5k'
+  if (combined.includes('5k') || combined.includes('5 k') || combined.includes('fun run'))
+    return '5k'
   return 'other'
 }
 
@@ -71,17 +84,18 @@ function normalizeAsset(asset: ActiveComAsset): NewRace | null {
 
   const lat = asset.place?.latitude ?? 0
   const lng = asset.place?.longitude ?? 0
-  const tags = (asset.assetTags || []).map(t => t.tag.tagName)
+  const tags = (asset.assetTags || []).map((t) => t.tag.tagName)
   const raceType = classifyFromName(asset.assetName, tags)
 
   const now = new Date().toISOString()
 
   // Strip HTML from description
-  const description = asset.assetDescription
-    ?.replaceAll(/<[^>]*>/g, '')
-    ?.replaceAll('&nbsp;', ' ')
-    ?.replaceAll('&amp;', '&')
-    ?.slice(0, 2000) || null
+  const description =
+    asset.assetDescription
+      ?.replaceAll(/<[^>]*>/g, '')
+      ?.replaceAll('&nbsp;', ' ')
+      ?.replaceAll('&amp;', '&')
+      ?.slice(0, 2000) || null
 
   return {
     id: `active_${asset.assetGuid}`,
@@ -120,14 +134,7 @@ export async function fetchActiveComRaces(options: {
   endDate?: string
   apiKey?: string
 }): Promise<{ races: NewRace[]; totalResults: number; hasMore: boolean }> {
-  const {
-    state,
-    page = 1,
-    resultsPerPage = 50,
-    startDate,
-    endDate,
-    apiKey,
-  } = options
+  const { state, page = 1, resultsPerPage = 50, startDate, endDate, apiKey } = options
 
   const params = new URLSearchParams({
     query: 'running OR marathon OR 5K OR 10K OR trail run OR half marathon',
@@ -147,7 +154,7 @@ export async function fetchActiveComRaces(options: {
 
   const response = await fetch(url, {
     headers: {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'User-Agent': 'WhereRun/1.0 (https://where-run.nard.uk)',
     },
     signal: AbortSignal.timeout(15_000),
@@ -160,7 +167,7 @@ export async function fetchActiveComRaces(options: {
   const data = (await response.json()) as ActiveComResponse
 
   const normalized = (data.results || [])
-    .map(asset => normalizeAsset(asset))
+    .map((asset) => normalizeAsset(asset))
     .filter((r): r is NewRace => r !== null)
 
   return {

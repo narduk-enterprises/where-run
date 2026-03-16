@@ -101,8 +101,28 @@ export default defineEventHandler(async (event) => {
     if (remaining() > 5_000 && config.activeComApiKey) {
       sourcesUsed.push('active')
       // Active.com is slower, so scrape fewer states
-      const activeStates = ['CA', 'TX', 'NY', 'FL', 'CO', 'OR', 'WA', 'IL', 'MA', 'PA',
-        'GA', 'NC', 'VA', 'OH', 'AZ', 'TN', 'MN', 'MI', 'NJ', 'MD']
+      const activeStates = [
+        'CA',
+        'TX',
+        'NY',
+        'FL',
+        'CO',
+        'OR',
+        'WA',
+        'IL',
+        'MA',
+        'PA',
+        'GA',
+        'NC',
+        'VA',
+        'OH',
+        'AZ',
+        'TN',
+        'MN',
+        'MI',
+        'NJ',
+        'MD',
+      ]
 
       for (const state of activeStates) {
         if (remaining() < 2_000) {
@@ -153,7 +173,8 @@ export default defineEventHandler(async (event) => {
           id: source,
           name: source === 'runsignup' ? 'RunSignUp' : 'Active.com',
           slug: source,
-          apiBaseUrl: source === 'runsignup' ? 'https://runsignup.com/Rest' : 'http://api.amp.active.com/v2',
+          apiBaseUrl:
+            source === 'runsignup' ? 'https://runsignup.com/Rest' : 'http://api.amp.active.com/v2',
           isActive: 1,
           lastScrapedAt: now,
           totalRacesScraped: totalFound,
@@ -203,7 +224,7 @@ export default defineEventHandler(async (event) => {
  * Uses source+sourceId as primary key, dedupeKey for cross-source matching.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- db type from useDatabase is untyped DrizzleD1Database
-async function upsertRaces(db: any, raceList: typeof races.$inferInsert[], now: string) {
+async function upsertRaces(db: any, raceList: (typeof races.$inferInsert)[], now: string) {
   let inserted = 0
   let updated = 0
   let skippedDupe = 0
