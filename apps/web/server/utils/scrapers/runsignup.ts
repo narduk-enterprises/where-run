@@ -71,10 +71,21 @@ function parseDistanceToMeters(distStr: string): number | null {
 function classifyRaceType(distanceMeters: number | null, distances: string[]): string {
   // Check named distances first
   const combined = distances.join(' ').toLowerCase()
-  if (combined.includes('ultra') || combined.includes('100k') || combined.includes('50k') || combined.includes('100 mi')) return 'ultra'
+  if (
+    combined.includes('ultra') ||
+    combined.includes('100k') ||
+    combined.includes('50k') ||
+    combined.includes('100 mi')
+  )
+    return 'ultra'
   if (combined.includes('trail')) return 'trail'
   if (combined.includes('marathon') && !combined.includes('half')) return 'marathon'
-  if (combined.includes('half marathon') || combined.includes('half-marathon') || combined.includes('13.1')) return 'half'
+  if (
+    combined.includes('half marathon') ||
+    combined.includes('half-marathon') ||
+    combined.includes('13.1')
+  )
+    return 'half'
   // Fall back to distance-based classification
   if (!distanceMeters) return 'other'
   if (distanceMeters <= 5200) return '5k'
@@ -92,7 +103,8 @@ function parseRaceTiles(html: string, state: string): NewRace[] {
 
   // Split HTML into race tile blocks using the <a> with findRace class
   // Each tile looks like: <a href="/Race/ST/City/Name?..." class="rsuTileGrid__item rsuTileGrid__item--findRace">...</a>
-  const tileRegex = /<a\s+href="(\/Race\/[^"]+)"[^>]*rsuTileGrid__item--findRace[^>]*>([\s\S]*?)<\/a>/g
+  const tileRegex =
+    /<a\s+href="(\/Race\/[^"]+)"[^>]*rsuTileGrid__item--findRace[^>]*>([\s\S]*?)<\/a>/g
   let tileMatch: RegExpExecArray | null
 
   while ((tileMatch = tileRegex.exec(html)) !== null) {
@@ -106,7 +118,9 @@ function parseRaceTiles(html: string, state: string): NewRace[] {
       if (!name) continue
 
       // Extract content divs (name, date, location are sequential divs)
-      const contentMatch = tileHtml.match(/rsuTileGrid__item__content[\s\S]*?<div[^>]*class="[^"]*fs-md-2[^"]*"[^>]*>[\s\S]*?<\/div>\s*<div[^>]*>([\s\S]*?)<\/div>\s*<div[^>]*>([\s\S]*?)<\/div>/)
+      const contentMatch = tileHtml.match(
+        /rsuTileGrid__item__content[\s\S]*?<div[^>]*class="[^"]*fs-md-2[^"]*"[^>]*>[\s\S]*?<\/div>\s*<div[^>]*>([\s\S]*?)<\/div>\s*<div[^>]*>([\s\S]*?)<\/div>/,
+      )
       const dateStr = contentMatch?.[1]?.replaceAll(/<[^>]*>/g, '').trim() || ''
       const locationStr = contentMatch?.[2]?.replaceAll(/<[^>]*>/g, '').trim() || ''
 
@@ -114,7 +128,7 @@ function parseRaceTiles(html: string, state: string): NewRace[] {
       if (!date) continue
 
       // Parse location: "City, ST"
-      const locParts = locationStr.split(',').map(s => s.trim())
+      const locParts = locationStr.split(',').map((s) => s.trim())
       const city = locParts[0] || ''
       const stateFromLoc = locParts[1] || state
 
@@ -204,7 +218,7 @@ export async function fetchRunSignUpRaces(options: {
   const response = await fetch(url, {
     headers: {
       'User-Agent': 'Mozilla/5.0 (compatible; WhereRun/1.0; +https://where-run.nard.uk)',
-      'Accept': 'text/html,application/xhtml+xml',
+      Accept: 'text/html,application/xhtml+xml',
       'Accept-Language': 'en-US,en;q=0.9',
     },
     signal: AbortSignal.timeout(15_000),
@@ -225,10 +239,55 @@ export async function fetchRunSignUpRaces(options: {
 
 /** US states to scrape — all 50 + DC */
 export const US_STATES = [
-  'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
-  'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
-  'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
-  'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
-  'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY',
+  'AL',
+  'AK',
+  'AZ',
+  'AR',
+  'CA',
+  'CO',
+  'CT',
+  'DE',
+  'FL',
+  'GA',
+  'HI',
+  'ID',
+  'IL',
+  'IN',
+  'IA',
+  'KS',
+  'KY',
+  'LA',
+  'ME',
+  'MD',
+  'MA',
+  'MI',
+  'MN',
+  'MS',
+  'MO',
+  'MT',
+  'NE',
+  'NV',
+  'NH',
+  'NJ',
+  'NM',
+  'NY',
+  'NC',
+  'ND',
+  'OH',
+  'OK',
+  'OR',
+  'PA',
+  'RI',
+  'SC',
+  'SD',
+  'TN',
+  'TX',
+  'UT',
+  'VT',
+  'VA',
+  'WA',
+  'WV',
+  'WI',
+  'WY',
   'DC',
 ]

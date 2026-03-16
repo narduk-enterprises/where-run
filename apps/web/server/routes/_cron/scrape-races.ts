@@ -122,7 +122,7 @@ export default defineEventHandler(async (event) => {
 
           // Brief delay between pages to be polite
           if (page < MAX_PAGES_PER_STATE && result.hasMore) {
-            await new Promise(resolve => setTimeout(resolve, REQUEST_DELAY_MS))
+            await new Promise((resolve) => setTimeout(resolve, REQUEST_DELAY_MS))
           }
         }
       } catch (stateErr: unknown) {
@@ -131,7 +131,7 @@ export default defineEventHandler(async (event) => {
       }
 
       // Brief delay between states
-      await new Promise(resolve => setTimeout(resolve, REQUEST_DELAY_MS))
+      await new Promise((resolve) => setTimeout(resolve, REQUEST_DELAY_MS))
     }
 
     // Update scrape log
