@@ -1,0 +1,77 @@
+{
+  // ── Formatter: Prettier handles all formatting ──────────────────────────────
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+
+  // ── Auto-save: focus-change is fast and never loses work mid-edit ───────────
+  // "afterDelay" can cause mid-keystroke saves that break large edits.
+  // "onFocusChange" saves when you switch to another file/pane — unintrusive.
+  "files.autoSave": "onFocusChange",
+
+  // ── ESLint: fix lint auto-fixable issues on save (logic, not formatting) ────
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  // Scope ESLint to packages that actually have it installed.
+  // Prevents false-positive "Failed to load ESLint library" warnings
+  // for root tools/ scripts and any /tmp files opened in the editor.
+  "eslint.workingDirectories": [
+    { "pattern": "./apps/*" },
+    { "pattern": "./layers/*" },
+    { "pattern": "./packages/*" },
+    { "pattern": "./plugins/*" }
+  ],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
+
+  // ── Per-language formatter overrides ────────────────────────────────────────
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "on"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // ── TypeScript: use workspace version ───────────────────────────────────────
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  // ── Files: hide noisy generated directories ─────────────────────────────────
+  "files.watcherExclude": {
+    "**/.nuxt/**": true,
+    "**/.output/**": true,
+    "**/node_modules/**": true,
+    "**/.wrangler/**": true
+  },
+  "files.exclude": {
+    "**/.DS_Store": true
+  },
+
+  // ── Search: exclude build artifacts ─────────────────────────────────────────
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.nuxt": true,
+    "**/.output": true,
+    "**/dist": true,
+    "**/.wrangler": true,
+    "**/pnpm-lock.yaml": true
+  }
+}

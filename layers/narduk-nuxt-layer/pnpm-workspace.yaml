@@ -1,0 +1,15 @@
+packages:
+  - eslint-plugin-nuxt-ui
+  - eslint-plugin-nuxt-guardrails
+  - eslint-plugins
+  - tools/eslint-plugin-vue-official-best-practices
+
+onlyBuiltDependencies:
+  - "@parcel/watcher"
+  - better-sqlite3
+  - core-js
+  - esbuild
+  - protobufjs
+  - sharp
+  - vue-demi
+  - workerd

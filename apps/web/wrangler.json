@@ -1,0 +1,28 @@
+{
+  "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
+  "name": "where-run",
+  "main": ".output/server/index.mjs",
+  "assets": {
+    "directory": ".output/public"
+  },
+  "compatibility_date": "2026-03-03",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "where-run-db",
+      "database_id": "faa8b0b7-7285-47c4-996d-f1c834dabaeb"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "where-run.nard.uk",
+      "custom_domain": true
+    }
+  ]
+}

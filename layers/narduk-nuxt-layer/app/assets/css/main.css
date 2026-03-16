@@ -1,0 +1,252 @@
+/* Fonts are handled by @nuxt/fonts — no @import url() needed */
+
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@theme {
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+
+  /* Shadows — semantic elevation scale */
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  --shadow-elevated: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+  --shadow-overlay: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+
+  /* Border Radius — semantic scale */
+  --radius-card: 1rem;
+  --radius-button: 0.5rem;
+  --radius-badge: 9999px;
+  --radius-input: 0.5rem;
+
+  /* Transitions — consistent motion */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+body {
+  @apply antialiased text-default bg-default scheme-light dark:scheme-dark;
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ─── Elevation Utilities ─── */
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+.shadow-elevated {
+  box-shadow: var(--shadow-elevated);
+}
+.shadow-overlay {
+  box-shadow: var(--shadow-overlay);
+}
+
+/* ─── Transition Utilities ─── */
+
+.transition-fast {
+  transition: all var(--transition-fast);
+}
+.transition-base {
+  transition: all var(--transition-base);
+}
+.transition-slow {
+  transition: all var(--transition-slow);
+}
+
+/* ─── Glassmorphism — uses stable Nuxt UI design tokens ─── */
+
+.glass {
+  @apply bg-default/80 border border-default;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card {
+  @apply bg-default/80 border border-default;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-card);
+}
+
+/* ─── Card Base — reusable card primitive ─── */
+
+.card-base {
+  @apply bg-default border border-default;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition-base);
+}
+
+.card-base:hover {
+  box-shadow: var(--shadow-elevated);
+}
+
+/* ─── Dark Mode Enhancements ─── */
+
+.dark .shadow-card {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  box-shadow: var(--tw-shadow);
+}
+
+.dark .shadow-elevated {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  box-shadow: var(--tw-shadow);
+}
+
+.dark .glass {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+  box-shadow: var(--tw-shadow);
+}
+
+.dark .glass-card {
+  box-shadow: var(--shadow-elevated);
+}
+
+/* ─── Animations ─── */
+
+/* Animated gradient background */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Count-up animation */
+@keyframes count-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-count-in {
+  animation: count-in 0.6s ease-out forwards;
+}
+
+/* Pulse glow for live indicator */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 8px currentColor;
+  }
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 16px currentColor;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Page transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: all var(--transition-slow);
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* ─── Form Layout Standards ─── */
+
+/* Nuxt UI components (UInput, UTextarea, USelect) need class="w-full"
+   on each instance to stretch. CSS descendant selectors cannot target
+   their internal wrapper structure. */
+
+/* Base form container — constrains width and centers the form */
+.form-container {
+  width: 100%;
+  max-width: 32rem; /* 512px — ideal for single-column forms */
+  margin-inline: auto;
+}
+
+/* Narrow variant for login/signup (max 24rem / 384px) */
+.form-narrow {
+  max-width: 24rem;
+}
+
+/* Wide variant for multi-column contact/settings forms (max 40rem / 640px) */
+.form-wide {
+  max-width: 40rem;
+}
+
+/* Full-width variant — no max-width, used inside cards or sidebars */
+.form-full {
+  max-width: none;
+}
+
+/* Consistent vertical spacing between form field groups */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* 20px — matches Nuxt UI's space-y-5 */
+}
+
+/* Two-column row for side-by-side fields (name + email, etc.) */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .form-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Standardized button row — right-aligned with gap */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+/* Center-aligned actions variant for login/signup */
+.form-actions-center {
+  justify-content: center;
+}
+
+/* Full-width single button variant */
+.form-actions-full {
+  flex-direction: column;
+}
+
+.form-actions-full > * {
+  width: 100%;
+}

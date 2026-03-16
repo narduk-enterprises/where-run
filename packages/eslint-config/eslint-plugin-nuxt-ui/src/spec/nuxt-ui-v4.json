@@ -1,0 +1,3076 @@
+{
+  "version": "4.0.0",
+  "generatedAt": "2026-01-22T23:27:28.632Z",
+  "components": {
+    "UAlert": {
+      "name": "UAlert",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"vertical\" | \"horizontal\" | undefined",
+          "required": false,
+          "description": "The orientation between the content and the actions.",
+          "enum": ["vertical", "horizontal"],
+          "deprecated": false
+        },
+        {
+          "name": "title",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "description",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "type": "any",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "avatar",
+          "type": "AvatarProps | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"error\" | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["error", "primary", "secondary", "success", "info", "warning", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"solid\" | \"outline\" | \"soft\" | \"subtle\" | undefined",
+          "required": false,
+          "enum": ["solid", "outline", "soft", "subtle"],
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "leading"
+        },
+        {
+          "name": "title"
+        },
+        {
+          "name": "description"
+        },
+        {
+          "name": "actions"
+        },
+        {
+          "name": "close"
+        }
+      ],
+      "events": [
+        {
+          "name": "open"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UApp": {
+      "name": "UApp",
+      "props": [
+        {
+          "name": "portal",
+          "type": "string | boolean | HTMLElement | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "dir",
+          "type": "Direction | undefined",
+          "required": false,
+          "description": "The global reading direction of your application. This will be inherited by all primitives.",
+          "deprecated": false
+        },
+        {
+          "name": "scrollBody",
+          "type": "boolean | ScrollBodyOption | undefined",
+          "required": false,
+          "description": "The global scroll body behavior of your application. This will be inherited by the related primitives.",
+          "deprecated": false
+        },
+        {
+          "name": "nonce",
+          "type": "string | undefined",
+          "required": false,
+          "description": "The global `nonce` value of your application. This will be inherited by the related primitives.",
+          "deprecated": false
+        },
+        {
+          "name": "tooltip",
+          "type": "TooltipProviderProps | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "toaster",
+          "type": "ToasterProps | null | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "locale",
+          "type": "Locale<T> | undefined",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UAvatar": {
+      "name": "UAvatar",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "src",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "alt",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "type": "any",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "text",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"md\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | \"3xs\" | \"2xs\" | \"2xl\" | \"3xl\" | undefined",
+          "required": false,
+          "enum": ["md", "xs", "sm", "lg", "xl", "3xs", "2xs", "2xl", "3xl"],
+          "deprecated": false
+        },
+        {
+          "name": "chip",
+          "type": "boolean | ChipProps | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; image?: ClassNameValue; fallback?: ClassNameValue; icon?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UBadge": {
+      "name": "UBadge",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "square",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Render the badge with equal padding on all sides.",
+          "deprecated": false
+        },
+        {
+          "name": "label",
+          "type": "string | number | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"error\" | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["error", "primary", "secondary", "success", "info", "warning", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"solid\" | \"outline\" | \"soft\" | \"subtle\" | undefined",
+          "required": false,
+          "enum": ["solid", "outline", "soft", "subtle"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["xs", "sm", "md", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ base?: ClassNameValue; label?: ClassNameValue; leadingIcon?: ClassNameValue; leadingAvatar?: ClassNameValue; leadingAvatarSize?: ClassNameValue; trailingIcon?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "leading"
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "trailing"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UButton": {
+      "name": "UButton",
+      "props": [
+        {
+          "name": "square",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Render the button with equal padding on all sides.",
+          "deprecated": false
+        },
+        {
+          "name": "block",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Render the button full width.",
+          "deprecated": false
+        },
+        {
+          "name": "loadingAuto",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Set loading state automatically based on the `@click` promise state",
+          "deprecated": false
+        },
+        {
+          "name": "label",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"error\" | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["error", "primary", "secondary", "success", "info", "warning", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "activeColor",
+          "type": "\"error\" | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["error", "primary", "secondary", "success", "info", "warning", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"solid\" | \"outline\" | \"soft\" | \"subtle\" | \"ghost\" | \"link\" | undefined",
+          "required": false,
+          "enum": ["solid", "outline", "soft", "subtle", "ghost", "link"],
+          "deprecated": false
+        },
+        {
+          "name": "activeVariant",
+          "type": "\"solid\" | \"outline\" | \"soft\" | \"subtle\" | \"ghost\" | \"link\" | undefined",
+          "required": false,
+          "enum": ["solid", "outline", "soft", "subtle", "ghost", "link"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["xs", "sm", "md", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "onClick",
+          "type": "((event: MouseEvent) => void | Promise<void>) | ((event: MouseEvent) => void | Promise<void>)[] | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ base?: ClassNameValue; label?: ClassNameValue; leadingIcon?: ClassNameValue; leadingAvatar?: ClassNameValue; leadingAvatarSize?: ClassNameValue; trailingIcon?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "leading"
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "trailing"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UCard": {
+      "name": "UCard",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"solid\" | \"outline\" | \"soft\" | \"subtle\" | undefined",
+          "required": false,
+          "enum": ["solid", "outline", "soft", "subtle"],
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; header?: ClassNameValue; body?: ClassNameValue; footer?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "header"
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "footer"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UCheckbox": {
+      "name": "UCheckbox",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "indicator",
+          "type": "\"start\" | \"end\" | \"hidden\" | undefined",
+          "required": false,
+          "description": "Position of the indicator.",
+          "enum": ["start", "end", "hidden"],
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed when checked.",
+          "deprecated": false
+        },
+        {
+          "name": "indeterminateIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed when the checkbox is indeterminate.",
+          "deprecated": false
+        },
+        {
+          "name": "label",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "description",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"error\" | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["error", "primary", "secondary", "success", "info", "warning", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"card\" | \"list\" | undefined",
+          "required": false,
+          "enum": ["card", "list"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"md\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["md", "xs", "sm", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; container?: ClassNameValue; base?: ClassNameValue; indicator?: ClassNameValue; icon?: ClassNameValue; wrapper?: ClassNameValue; label?: ClassNameValue; description?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "label"
+        },
+        {
+          "name": "description"
+        }
+      ],
+      "events": [
+        {
+          "name": "change"
+        },
+        {
+          "name": "modelValue"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UCollapsible": {
+      "name": "UCollapsible",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; content?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "content"
+        }
+      ],
+      "events": [
+        {
+          "name": "open"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UContainer": {
+      "name": "UContainer",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UDashboardGroup": {
+      "name": "UDashboardGroup",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "storage",
+          "type": "\"cookie\" | \"local\" | undefined",
+          "required": false,
+          "description": "The storage to use for the size.",
+          "enum": ["cookie", "local"],
+          "deprecated": true,
+          "replacedBy": "for"
+        },
+        {
+          "name": "storageKey",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Unique id used to auto-save size.",
+          "deprecated": false
+        },
+        {
+          "name": "persistent",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Whether to persist the size in the storage.",
+          "deprecated": false
+        },
+        {
+          "name": "unit",
+          "type": "\"%\" | \"rem\" | \"px\" | undefined",
+          "required": false,
+          "description": "The unit to use for size values.",
+          "enum": ["%", "rem", "px"],
+          "deprecated": true,
+          "replacedBy": "for"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UDashboardPanel": {
+      "name": "UDashboardPanel",
+      "props": [
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; body?: ClassNameValue; handle?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "header"
+        },
+        {
+          "name": "body"
+        },
+        {
+          "name": "footer"
+        },
+        {
+          "name": "handle"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UDashboardSidebar": {
+      "name": "UDashboardSidebar",
+      "props": [
+        {
+          "name": "mode",
+          "type": "T | undefined",
+          "required": false,
+          "description": "The mode of the sidebar menu.",
+          "deprecated": false
+        },
+        {
+          "name": "menu",
+          "type": "DashboardSidebarMenu<T> | undefined",
+          "required": false,
+          "description": "The props for the sidebar menu component.",
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "header"
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "footer"
+        },
+        {
+          "name": "toggle"
+        },
+        {
+          "name": "content"
+        },
+        {
+          "name": "handle"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UDropdownMenu": {
+      "name": "UDropdownMenu",
+      "props": [
+        {
+          "name": "checkedIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed when an item is checked.",
+          "deprecated": false
+        },
+        {
+          "name": "loadingIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed when an item is loading.",
+          "deprecated": false
+        },
+        {
+          "name": "externalIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed when the item is an external link.",
+          "deprecated": false
+        },
+        {
+          "name": "content",
+          "type": "(Omit<DropdownMenuContentProps, \"as\" | \"asChild\" | \"forceMount\"> & Partial<EmitsToProps<MenuContentEmits>>) | undefined",
+          "required": false,
+          "description": "The content of the menu.",
+          "enum": ["as", "asChild", "forceMount"],
+          "deprecated": false
+        },
+        {
+          "name": "arrow",
+          "type": "boolean | Omit<DropdownMenuArrowProps, \"as\" | \"asChild\"> | undefined",
+          "required": false,
+          "description": "Display an arrow alongside the menu.",
+          "enum": ["as", "asChild"],
+          "deprecated": false
+        },
+        {
+          "name": "portal",
+          "type": "string | boolean | HTMLElement | undefined",
+          "required": false,
+          "description": "Render the menu in a portal.",
+          "deprecated": false
+        },
+        {
+          "name": "labelKey",
+          "type": "GetItemKeys<T> | undefined",
+          "required": false,
+          "description": "The key used to get the label from the item.",
+          "deprecated": false
+        },
+        {
+          "name": "descriptionKey",
+          "type": "GetItemKeys<T> | undefined",
+          "required": false,
+          "description": "The key used to get the description from the item.",
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"xs\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["sm", "md", "xs", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "items",
+          "type": "T | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ content?: ClassNameValue; viewport?: ClassNameValue; arrow?: ClassNameValue; group?: ClassNameValue; label?: ClassNameValue; separator?: ClassNameValue; item?: ClassNameValue; itemLeadingIcon?: ClassNameValue; itemLeadingAvatar?: ClassNameValue; itemLeadingAvatarSize?: ClassNameValue; itemTrailing?: ClassNameValue; itemTrailingIcon?: ClassNameValue; itemTrailingKbds?: ClassNameValue; itemTrailingKbdsSize?: ClassNameValue; itemWrapper?: ClassNameValue; itemLabel?: ClassNameValue; itemDescription?: ClassNameValue; itemLabelExternalIcon?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "item"
+        },
+        {
+          "name": "leading"
+        },
+        {
+          "name": "label"
+        },
+        {
+          "name": "description"
+        },
+        {
+          "name": "trailing"
+        },
+        {
+          "name": "top"
+        },
+        {
+          "name": "bottom"
+        }
+      ],
+      "events": [
+        {
+          "name": "open"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UEmpty": {
+      "name": "UEmpty",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed above the title.",
+          "deprecated": false
+        },
+        {
+          "name": "actions",
+          "type": "ButtonProps[] | undefined",
+          "required": false,
+          "description": "Display a list of Button in the body.",
+          "deprecated": false
+        },
+        {
+          "name": "avatar",
+          "type": "AvatarProps | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "title",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "description",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"outline\" | \"solid\" | \"soft\" | \"subtle\" | \"naked\" | undefined",
+          "required": false,
+          "enum": ["outline", "solid", "soft", "subtle", "naked"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"md\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["md", "xs", "sm", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; header?: ClassNameValue; avatar?: ClassNameValue; title?: ClassNameValue; description?: ClassNameValue; body?: ClassNameValue; actions?: ClassNameValue; footer?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "header"
+        },
+        {
+          "name": "leading"
+        },
+        {
+          "name": "title"
+        },
+        {
+          "name": "description"
+        },
+        {
+          "name": "body"
+        },
+        {
+          "name": "actions"
+        },
+        {
+          "name": "footer"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UForm": {
+      "name": "UForm",
+      "props": [
+        {
+          "name": "schema",
+          "type": "S | undefined",
+          "required": false,
+          "description": "Schema to validate the form state. Supports Standard Schema objects, Yup, Joi, and Superstructs.",
+          "deprecated": false
+        },
+        {
+          "name": "state",
+          "type": "(N extends false ? Partial<InferInput<S>> : never) | undefined",
+          "required": false,
+          "description": "An object representing the current state of the form.",
+          "deprecated": false
+        },
+        {
+          "name": "validate",
+          "type": "((state: Partial<InferInput<S>>) => FormError<string>[] | Promise<FormError<string>[]>) | undefined",
+          "required": false,
+          "description": "Custom validation function to validate the form state.",
+          "deprecated": false
+        },
+        {
+          "name": "validateOn",
+          "type": "FormInputEvents[] | undefined",
+          "required": false,
+          "description": "The list of input events that trigger the form validation.",
+          "deprecated": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Disable all inputs inside the form.",
+          "deprecated": false
+        },
+        {
+          "name": "name",
+          "type": "(N extends true ? string : never) | undefined",
+          "required": false,
+          "description": "Path of the form's state within it's parent form.",
+          "deprecated": false
+        },
+        {
+          "name": "validateOnInputDelay",
+          "type": "number | undefined",
+          "required": false,
+          "description": "Delay in milliseconds before validating the form on input events.",
+          "deprecated": false
+        },
+        {
+          "name": "transform",
+          "type": "T | undefined",
+          "required": false,
+          "description": "If true, applies schema transformations on submit.",
+          "deprecated": false
+        },
+        {
+          "name": "nested",
+          "type": "N | undefined",
+          "required": false,
+          "description": "If true, this form will attach to its parent Form and validate at the same time.",
+          "deprecated": false
+        },
+        {
+          "name": "loadingAuto",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "When `true`, all form elements will be disabled on `@submit` event.",
+          "deprecated": true,
+          "replacedBy": "any"
+        },
+        {
+          "name": "id",
+          "type": "string | number | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "acceptcharset",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "action",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "autocomplete",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "enctype",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "method",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "novalidate",
+          "type": "Booleanish | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "target",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "events": [
+        {
+          "name": "submit"
+        },
+        {
+          "name": "error"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UFormField": {
+      "name": "UFormField",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "name",
+          "type": "string | undefined",
+          "required": false,
+          "description": "The name of the FormField. Also used to match form errors.",
+          "deprecated": false
+        },
+        {
+          "name": "errorPattern",
+          "type": "RegExp | undefined",
+          "required": false,
+          "description": "A regular expression to match form error names.",
+          "deprecated": false
+        },
+        {
+          "name": "error",
+          "type": "string | boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "eagerValidation",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "If true, validation on input will be active immediately instead of waiting for a blur event.",
+          "deprecated": false
+        },
+        {
+          "name": "validateOnInputDelay",
+          "type": "number | undefined",
+          "required": false,
+          "description": "Delay in milliseconds before validating the form on input events.",
+          "deprecated": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"vertical\" | \"horizontal\" | undefined",
+          "required": false,
+          "description": "The orientation of the form field.",
+          "enum": ["vertical", "horizontal"],
+          "deprecated": false
+        },
+        {
+          "name": "label",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "description",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "help",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "hint",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"md\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["md", "xs", "sm", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "required",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; wrapper?: ClassNameValue; labelWrapper?: ClassNameValue; label?: ClassNameValue; container?: ClassNameValue; description?: ClassNameValue; error?: ClassNameValue; hint?: ClassNameValue; help?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "label"
+        },
+        {
+          "name": "hint"
+        },
+        {
+          "name": "description"
+        },
+        {
+          "name": "help"
+        },
+        {
+          "name": "error"
+        },
+        {
+          "name": "default"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UIcon": {
+      "name": "UIcon",
+      "props": [
+        {
+          "name": "name",
+          "type": "any",
+          "required": true,
+          "deprecated": false
+        },
+        {
+          "name": "mode",
+          "type": "\"svg\" | \"css\" | undefined",
+          "required": false,
+          "enum": ["svg", "css"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "string | number | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "customize",
+          "type": "((content: string, name?: string | undefined, prefix?: string | undefined, provider?: string | undefined) => string) | undefined",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UInput": {
+      "name": "UInput",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "type",
+          "type": "InputTypeHTMLAttribute | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string | undefined",
+          "required": false,
+          "description": "The placeholder text when the input is empty.",
+          "deprecated": false
+        },
+        {
+          "name": "autocomplete",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "autofocusDelay",
+          "type": "number | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "highlight",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Highlight the ring color like a focus state.",
+          "deprecated": false
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "name",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"error\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["primary", "secondary", "success", "info", "warning", "error", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"outline\" | \"soft\" | \"subtle\" | \"ghost\" | \"none\" | undefined",
+          "required": false,
+          "enum": ["outline", "soft", "subtle", "ghost", "none"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["xs", "sm", "md", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "required",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "autofocus",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "modelValue",
+          "type": "T | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "T | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "modelModifiers",
+          "type": "ModelModifiers<T> | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; base?: ClassNameValue; leading?: ClassNameValue; leadingIcon?: ClassNameValue; leadingAvatar?: ClassNameValue; leadingAvatarSize?: ClassNameValue; trailing?: ClassNameValue; trailingIcon?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "leading"
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "trailing"
+        }
+      ],
+      "events": [
+        {
+          "name": "modelValue"
+        },
+        {
+          "name": "blur"
+        },
+        {
+          "name": "change"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UInputMenu": {
+      "name": "UInputMenu",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "type",
+          "type": "InputTypeHTMLAttribute | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string | undefined",
+          "required": false,
+          "description": "The placeholder text when the input is empty.",
+          "deprecated": false
+        },
+        {
+          "name": "autofocusDelay",
+          "type": "number | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "trailingIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed to open the menu.",
+          "deprecated": false
+        },
+        {
+          "name": "selectedIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed when an item is selected.",
+          "deprecated": false
+        },
+        {
+          "name": "deleteIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed to delete a tag.",
+          "deprecated": false
+        },
+        {
+          "name": "clear",
+          "type": "boolean | Partial<Omit<ButtonProps, LinkPropsKeys>> | undefined",
+          "required": false,
+          "description": "Display a clear button to reset the model value.",
+          "deprecated": false
+        },
+        {
+          "name": "clearIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed in the clear button.",
+          "deprecated": false
+        },
+        {
+          "name": "content",
+          "type": "(Omit<ComboboxContentProps, \"asChild\" | \"as\" | \"forceMount\"> & Partial<EmitsToProps<DismissableLayerEmits>>) | undefined",
+          "required": false,
+          "description": "The content of the menu.",
+          "enum": ["asChild", "as", "forceMount"],
+          "deprecated": false
+        },
+        {
+          "name": "arrow",
+          "type": "boolean | Omit<ComboboxArrowProps, \"asChild\" | \"as\"> | undefined",
+          "required": false,
+          "description": "Display an arrow alongside the menu.",
+          "enum": ["asChild", "as"],
+          "deprecated": false
+        },
+        {
+          "name": "portal",
+          "type": "string | boolean | HTMLElement | undefined",
+          "required": false,
+          "description": "Render the menu in a portal.",
+          "deprecated": false
+        },
+        {
+          "name": "virtualize",
+          "type": "boolean | { overscan?: number | undefined",
+          "required": false,
+          "description": "Enable virtualization for large lists.",
+          "deprecated": false
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"error\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["primary", "secondary", "success", "info", "warning", "error", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"soft\" | \"outline\" | \"subtle\" | \"ghost\" | \"none\" | undefined",
+          "required": false,
+          "enum": ["soft", "outline", "subtle", "ghost", "none"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"xs\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["sm", "md", "xs", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "required",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "autofocus",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "leading"
+        },
+        {
+          "name": "trailing"
+        },
+        {
+          "name": "empty"
+        },
+        {
+          "name": "item"
+        },
+        {
+          "name": "leading"
+        },
+        {
+          "name": "label"
+        },
+        {
+          "name": "description"
+        },
+        {
+          "name": "trailing"
+        },
+        {
+          "name": "text"
+        },
+        {
+          "name": "delete"
+        },
+        {
+          "name": "top"
+        },
+        {
+          "name": "bottom"
+        },
+        {
+          "name": "label"
+        }
+      ],
+      "events": [
+        {
+          "name": "open"
+        },
+        {
+          "name": "change"
+        },
+        {
+          "name": "blur"
+        },
+        {
+          "name": "focus"
+        },
+        {
+          "name": "create"
+        },
+        {
+          "name": "clear"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UKbd": {
+      "name": "UKbd",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "value",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"error\" | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["error", "primary", "secondary", "success", "info", "warning", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"outline\" | \"soft\" | \"subtle\" | \"solid\" | undefined",
+          "required": false,
+          "enum": ["outline", "soft", "subtle", "solid"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\" | undefined",
+          "required": false,
+          "enum": ["sm", "md", "lg"],
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UModal": {
+      "name": "UModal",
+      "props": [
+        {
+          "name": "content",
+          "type": "(Omit<DialogContentProps, \"as\" | \"asChild\" | \"forceMount\"> & Partial<EmitsToProps<DialogContentImplEmits>>) | undefined",
+          "required": false,
+          "description": "The content of the modal.",
+          "enum": ["as", "asChild", "forceMount"],
+          "deprecated": false
+        },
+        {
+          "name": "overlay",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Render an overlay behind the modal.",
+          "deprecated": false
+        },
+        {
+          "name": "scrollable",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "When `true`, enables scrollable overlay mode where content scrolls within the overlay.",
+          "deprecated": false
+        },
+        {
+          "name": "transition",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Animate the modal when opening or closing.",
+          "deprecated": false
+        },
+        {
+          "name": "fullscreen",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "When `true`, the modal will take up the full screen.",
+          "deprecated": false
+        },
+        {
+          "name": "portal",
+          "type": "string | boolean | HTMLElement | undefined",
+          "required": false,
+          "description": "Render the modal in a portal.",
+          "deprecated": false
+        },
+        {
+          "name": "title",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "description",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "open",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Controls the open/closed state of the modal. Use with v-model:open for two-way binding.",
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "content"
+        },
+        {
+          "name": "header"
+        },
+        {
+          "name": "title"
+        },
+        {
+          "name": "description"
+        },
+        {
+          "name": "actions"
+        },
+        {
+          "name": "close"
+        },
+        {
+          "name": "body"
+        },
+        {
+          "name": "footer"
+        }
+      ],
+      "events": [
+        {
+          "name": "leave"
+        },
+        {
+          "name": "enter"
+        },
+        {
+          "name": "prevent"
+        },
+        {
+          "name": "open"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UNavigationMenu": {
+      "name": "UNavigationMenu",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "type",
+          "type": "K | undefined",
+          "required": false,
+          "description": "Determines whether a \"single\" or \"multiple\" items can be selected at a time.",
+          "deprecated": false
+        },
+        {
+          "name": "modelValue",
+          "type": "NavigationMenuModelValue<K, O> | undefined",
+          "required": false,
+          "description": "The controlled value of the active item(s).",
+          "deprecated": true,
+          "replacedBy": "this"
+        },
+        {
+          "name": "defaultValue",
+          "type": "NavigationMenuModelValue<K, O> | undefined",
+          "required": false,
+          "description": "The default active value of the item(s).",
+          "deprecated": true,
+          "replacedBy": "when"
+        },
+        {
+          "name": "trailingIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed to open the menu.",
+          "deprecated": false
+        },
+        {
+          "name": "externalIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed when the item is an external link.",
+          "deprecated": false
+        },
+        {
+          "name": "orientation",
+          "type": "O | undefined",
+          "required": false,
+          "description": "The orientation of the menu.",
+          "deprecated": false
+        },
+        {
+          "name": "collapsed",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Collapse the navigation menu to only show icons.",
+          "deprecated": false
+        },
+        {
+          "name": "items",
+          "type": "T | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"error\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["primary", "secondary", "success", "info", "warning", "error", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"pill\" | \"link\" | undefined",
+          "required": false,
+          "enum": ["pill", "link"],
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "item"
+        },
+        {
+          "name": "leading"
+        },
+        {
+          "name": "label"
+        },
+        {
+          "name": "trailing"
+        },
+        {
+          "name": "content"
+        },
+        {
+          "name": "leading"
+        },
+        {
+          "name": "trailing"
+        }
+      ],
+      "events": [
+        {
+          "name": "modelValue"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UPagination": {
+      "name": "UPagination",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "firstIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon to use for the first page control.",
+          "deprecated": true,
+          "replacedBy": "for"
+        },
+        {
+          "name": "prevIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon to use for the previous page control.",
+          "deprecated": true,
+          "replacedBy": "for"
+        },
+        {
+          "name": "nextIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon to use for the next page control.",
+          "deprecated": true,
+          "replacedBy": "for"
+        },
+        {
+          "name": "lastIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon to use for the last page control.",
+          "deprecated": true,
+          "replacedBy": "for"
+        },
+        {
+          "name": "ellipsisIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon to use for the ellipsis control.",
+          "deprecated": true,
+          "replacedBy": "for"
+        },
+        {
+          "name": "color",
+          "type": "\"error\" | \"neutral\" | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | undefined",
+          "required": false,
+          "description": "The color of the pagination controls.",
+          "enum": ["error", "neutral", "primary", "secondary", "success", "info", "warning"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"outline\" | \"solid\" | \"soft\" | \"subtle\" | \"ghost\" | \"link\" | undefined",
+          "required": false,
+          "description": "The variant of the pagination controls.",
+          "enum": ["outline", "solid", "soft", "subtle", "ghost", "link"],
+          "deprecated": false
+        },
+        {
+          "name": "activeColor",
+          "type": "\"error\" | \"neutral\" | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | undefined",
+          "required": false,
+          "description": "The color of the active pagination control.",
+          "enum": ["error", "neutral", "primary", "secondary", "success", "info", "warning"],
+          "deprecated": false
+        },
+        {
+          "name": "activeVariant",
+          "type": "\"outline\" | \"solid\" | \"soft\" | \"subtle\" | \"ghost\" | \"link\" | undefined",
+          "required": false,
+          "description": "The variant of the active pagination control.",
+          "enum": ["outline", "solid", "soft", "subtle", "ghost", "link"],
+          "deprecated": false
+        },
+        {
+          "name": "showControls",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Whether to show the first, previous, next, and last controls.",
+          "deprecated": false
+        },
+        {
+          "name": "to",
+          "type": "((page: number) => string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric | undefined) | undefined",
+          "required": false,
+          "description": "A function to render page controls as links.",
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["xs", "sm", "md", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; list?: ClassNameValue; ellipsis?: ClassNameValue; label?: ClassNameValue; first?: ClassNameValue; prev?: ClassNameValue; item?: ClassNameValue; next?: ClassNameValue; last?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "first"
+        },
+        {
+          "name": "prev"
+        },
+        {
+          "name": "next"
+        },
+        {
+          "name": "last"
+        },
+        {
+          "name": "ellipsis"
+        },
+        {
+          "name": "item"
+        }
+      ],
+      "events": [
+        {
+          "name": "page"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UPopover": {
+      "name": "UPopover",
+      "props": [
+        {
+          "name": "mode",
+          "type": "M | undefined",
+          "required": false,
+          "description": "The display mode of the popover.",
+          "deprecated": false
+        },
+        {
+          "name": "content",
+          "type": "(Omit<PopoverContentProps, \"as\" | \"asChild\" | \"forceMount\"> & Partial<EmitsToProps<PopoverContentImplEmits>>) | undefined",
+          "required": false,
+          "description": "The content of the popover.",
+          "enum": ["as", "asChild", "forceMount"],
+          "deprecated": false
+        },
+        {
+          "name": "arrow",
+          "type": "boolean | Omit<PopoverArrowProps, \"as\" | \"asChild\"> | undefined",
+          "required": false,
+          "description": "Display an arrow alongside the popover.",
+          "enum": ["as", "asChild"],
+          "deprecated": false
+        },
+        {
+          "name": "portal",
+          "type": "string | boolean | HTMLElement | undefined",
+          "required": false,
+          "description": "Render the popover in a portal.",
+          "deprecated": false
+        },
+        {
+          "name": "reference",
+          "type": "ReferenceElement | undefined",
+          "required": false,
+          "description": "The reference (or anchor) element that is being referred to for positioning.",
+          "deprecated": true,
+          "replacedBy": "the"
+        },
+        {
+          "name": "dismissible",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "When `false`, the popover will not close when clicking outside or pressing escape.",
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ content?: ClassNameValue; arrow?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "content"
+        },
+        {
+          "name": "anchor"
+        }
+      ],
+      "events": [
+        {
+          "name": "prevent"
+        },
+        {
+          "name": "open"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UProgress": {
+      "name": "UProgress",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "max",
+          "type": "number | any[] | undefined",
+          "required": false,
+          "description": "The maximum progress value.",
+          "deprecated": false
+        },
+        {
+          "name": "status",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Display the current progress value.",
+          "deprecated": false
+        },
+        {
+          "name": "inverted",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Whether the progress is visually inverted.",
+          "deprecated": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\" | undefined",
+          "required": false,
+          "description": "The orientation of the progress bar.",
+          "enum": ["horizontal", "vertical"],
+          "deprecated": false
+        },
+        {
+          "name": "animation",
+          "type": "\"carousel\" | \"carousel-inverse\" | \"swing\" | \"elastic\" | undefined",
+          "required": false,
+          "description": "The animation of the progress bar.",
+          "enum": ["carousel", "carousel-inverse", "swing", "elastic"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | undefined",
+          "required": false,
+          "enum": ["2xs", "xs", "sm", "md", "lg", "xl", "2xl"],
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"error\" | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["error", "primary", "secondary", "success", "info", "warning", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; base?: ClassNameValue; indicator?: ClassNameValue; status?: ClassNameValue; steps?: ClassNameValue; step?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "status"
+        }
+      ],
+      "events": [
+        {
+          "name": "modelValue"
+        },
+        {
+          "name": "max"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "USelect": {
+      "name": "USelect",
+      "props": [
+        {
+          "name": "placeholder",
+          "type": "string | undefined",
+          "required": false,
+          "description": "The placeholder text when the select is empty.",
+          "deprecated": false
+        },
+        {
+          "name": "trailingIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed to open the menu.",
+          "deprecated": false
+        },
+        {
+          "name": "selectedIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon displayed when an item is selected.",
+          "deprecated": false
+        },
+        {
+          "name": "content",
+          "type": "(Omit<SelectContentProps, \"asChild\" | \"as\" | \"forceMount\"> & Partial<EmitsToProps<SelectContentImplEmits>>) | undefined",
+          "required": false,
+          "description": "The content of the menu.",
+          "enum": ["asChild", "as", "forceMount"],
+          "deprecated": false
+        },
+        {
+          "name": "arrow",
+          "type": "boolean | Omit<SelectArrowProps, \"asChild\" | \"as\"> | undefined",
+          "required": false,
+          "description": "Display an arrow alongside the menu.",
+          "enum": ["asChild", "as"],
+          "deprecated": false
+        },
+        {
+          "name": "portal",
+          "type": "string | boolean | HTMLElement | undefined",
+          "required": false,
+          "description": "Render the menu in a portal.",
+          "deprecated": false
+        },
+        {
+          "name": "valueKey",
+          "type": "VK | undefined",
+          "required": false,
+          "description": "When `items` is an array of objects, select the field to use as the value.",
+          "deprecated": true,
+          "replacedBy": "as"
+        },
+        {
+          "name": "labelKey",
+          "type": "GetItemKeys<T> | undefined",
+          "required": false,
+          "description": "When `items` is an array of objects, select the field to use as the label.",
+          "deprecated": true,
+          "replacedBy": "as"
+        },
+        {
+          "name": "descriptionKey",
+          "type": "GetItemKeys<T> | undefined",
+          "required": false,
+          "description": "When `items` is an array of objects, select the field to use as the description.",
+          "deprecated": true,
+          "replacedBy": "as"
+        },
+        {
+          "name": "defaultValue",
+          "type": "GetModelValue<T, VK, M> | undefined",
+          "required": false,
+          "description": "The value of the Select when initially rendered. Use when you do not need to control the state of the Select.",
+          "deprecated": true,
+          "replacedBy": "when"
+        },
+        {
+          "name": "modelValue",
+          "type": "GetModelValue<T, VK, M> | undefined",
+          "required": false,
+          "description": "The controlled value of the Select. Can be bind as `v-model`.",
+          "deprecated": false
+        },
+        {
+          "name": "multiple",
+          "type": "M | undefined",
+          "required": false,
+          "description": "Whether multiple options can be selected or not.",
+          "deprecated": false
+        },
+        {
+          "name": "highlight",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Highlight the ring color like a focus state.",
+          "deprecated": false
+        },
+        {
+          "name": "autofocusDelay",
+          "type": "number | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"error\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["primary", "secondary", "success", "info", "warning", "error", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"outline\" | \"soft\" | \"subtle\" | \"ghost\" | \"none\" | undefined",
+          "required": false,
+          "enum": ["outline", "soft", "subtle", "ghost", "none"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"xs\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["sm", "md", "xs", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "items",
+          "type": "T | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "modelModifiers",
+          "type": "Omit<ModelModifiers<GetModelValue<T, VK, M>>, \"lazy\"> | undefined",
+          "required": false,
+          "enum": ["lazy"],
+          "deprecated": false
+        },
+        {
+          "name": "autofocus",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ base?: ClassNameValue; leading?: ClassNameValue; leadingIcon?: ClassNameValue; leadingAvatar?: ClassNameValue; leadingAvatarSize?: ClassNameValue; trailing?: ClassNameValue; trailingIcon?: ClassNameValue; value?: ClassNameValue; placeholder?: ClassNameValue; arrow?: ClassNameValue; content?: ClassNameValue; viewport?: ClassNameValue; group?: ClassNameValue; empty?: ClassNameValue; label?: ClassNameValue; separator?: ClassNameValue; item?: ClassNameValue; itemLeadingIcon?: ClassNameValue; itemLeadingAvatar?: ClassNameValue; itemLeadingAvatarSize?: ClassNameValue; itemLeadingChip?: ClassNameValue; itemLeadingChipSize?: ClassNameValue; itemTrailing?: ClassNameValue; itemTrailingIcon?: ClassNameValue; itemWrapper?: ClassNameValue; itemLabel?: ClassNameValue; itemDescription?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "leading"
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "trailing"
+        },
+        {
+          "name": "item"
+        },
+        {
+          "name": "leading"
+        },
+        {
+          "name": "label"
+        },
+        {
+          "name": "description"
+        },
+        {
+          "name": "trailing"
+        },
+        {
+          "name": "top"
+        },
+        {
+          "name": "bottom"
+        }
+      ],
+      "events": [
+        {
+          "name": "modelValue"
+        },
+        {
+          "name": "open"
+        },
+        {
+          "name": "change"
+        },
+        {
+          "name": "blur"
+        },
+        {
+          "name": "focus"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "USelectMenu": {
+      "name": "USelectMenu",
+      "props": [
+        {
+          "name": "placeholder",
+          "type": "string | undefined",
+          "required": false,
+          "description": "The placeholder text when the select is empty.",
+          "deprecated": false
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "leading"
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "trailing"
+        },
+        {
+          "name": "empty"
+        },
+        {
+          "name": "item"
+        },
+        {
+          "name": "leading"
+        },
+        {
+          "name": "label"
+        },
+        {
+          "name": "description"
+        },
+        {
+          "name": "trailing"
+        },
+        {
+          "name": "top"
+        },
+        {
+          "name": "bottom"
+        },
+        {
+          "name": "label"
+        }
+      ],
+      "events": [
+        {
+          "name": "open"
+        },
+        {
+          "name": "change"
+        },
+        {
+          "name": "blur"
+        },
+        {
+          "name": "focus"
+        },
+        {
+          "name": "create"
+        },
+        {
+          "name": "clear"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "USeparator": {
+      "name": "USeparator",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "label",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Display a label in the middle.",
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "type": "any",
+          "required": false,
+          "description": "Display an icon in the middle.",
+          "deprecated": false
+        },
+        {
+          "name": "avatar",
+          "type": "AvatarProps | undefined",
+          "required": false,
+          "description": "Display an avatar in the middle.",
+          "deprecated": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\" | undefined",
+          "required": false,
+          "description": "The orientation of the separator.",
+          "enum": ["horizontal", "vertical"],
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"error\" | \"neutral\" | \"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | undefined",
+          "required": false,
+          "enum": ["error", "neutral", "primary", "secondary", "success", "info", "warning"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["xs", "sm", "md", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "type",
+          "type": "\"solid\" | \"dashed\" | \"dotted\" | undefined",
+          "required": false,
+          "enum": ["solid", "dashed", "dotted"],
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; border?: ClassNameValue; container?: ClassNameValue; icon?: ClassNameValue; avatar?: ClassNameValue; avatarSize?: ClassNameValue; label?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "USkeleton": {
+      "name": "USkeleton",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "USlideover": {
+      "name": "USlideover",
+      "props": [
+        {
+          "name": "content",
+          "type": "(Omit<DialogContentProps, \"as\" | \"asChild\" | \"forceMount\"> & Partial<EmitsToProps<DialogContentImplEmits>>) | undefined",
+          "required": false,
+          "description": "The content of the slideover.",
+          "enum": ["as", "asChild", "forceMount"],
+          "deprecated": false
+        },
+        {
+          "name": "overlay",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Render an overlay behind the slideover.",
+          "deprecated": false
+        },
+        {
+          "name": "transition",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Animate the slideover when opening or closing.",
+          "deprecated": false
+        },
+        {
+          "name": "side",
+          "type": "\"right\" | \"top\" | \"bottom\" | \"left\" | undefined",
+          "required": false,
+          "description": "The side of the slideover.",
+          "enum": ["right", "top", "bottom", "left"],
+          "deprecated": false
+        },
+        {
+          "name": "inset",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Whether to inset the slideover from the edges.",
+          "deprecated": false
+        },
+        {
+          "name": "portal",
+          "type": "string | boolean | HTMLElement | undefined",
+          "required": false,
+          "description": "Render the slideover in a portal.",
+          "deprecated": false
+        },
+        {
+          "name": "title",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "description",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "content"
+        },
+        {
+          "name": "header"
+        },
+        {
+          "name": "title"
+        },
+        {
+          "name": "description"
+        },
+        {
+          "name": "actions"
+        },
+        {
+          "name": "close"
+        },
+        {
+          "name": "body"
+        },
+        {
+          "name": "footer"
+        }
+      ],
+      "events": [
+        {
+          "name": "leave"
+        },
+        {
+          "name": "enter"
+        },
+        {
+          "name": "prevent"
+        },
+        {
+          "name": "open"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "USwitch": {
+      "name": "USwitch",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "When `true`, the loading icon will be displayed.",
+          "deprecated": false
+        },
+        {
+          "name": "loadingIcon",
+          "type": "any",
+          "required": false,
+          "description": "The icon when the `loading` prop is `true`.",
+          "deprecated": false
+        },
+        {
+          "name": "checkedIcon",
+          "type": "any",
+          "required": false,
+          "description": "Display an icon when the switch is checked.",
+          "deprecated": false
+        },
+        {
+          "name": "uncheckedIcon",
+          "type": "any",
+          "required": false,
+          "description": "Display an icon when the switch is unchecked.",
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"error\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["primary", "secondary", "success", "info", "warning", "error", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["xs", "sm", "md", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "label",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "description",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; base?: ClassNameValue; container?: ClassNameValue; thumb?: ClassNameValue; icon?: ClassNameValue; wrapper?: ClassNameValue; label?: ClassNameValue; description?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "label"
+        },
+        {
+          "name": "description"
+        }
+      ],
+      "events": [
+        {
+          "name": "modelValue"
+        },
+        {
+          "name": "change"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UTable": {
+      "name": "UTable",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "meta",
+          "type": "TableMeta<T> | undefined",
+          "required": false,
+          "description": "You can pass any object to `options.meta` and access it anywhere the `table` is available via `table.options.meta`.",
+          "deprecated": false
+        },
+        {
+          "name": "virtualize",
+          "type": "boolean | (Partial<Omit<VirtualizerOptions<Element, Element>, \"getScrollElement\" | \"count\" | \"estimateSize\" | \"overscan\">> & { overscan?: number | undefined",
+          "required": false,
+          "description": "Enable virtualization for large datasets.",
+          "enum": ["getScrollElement", "count", "estimateSize", "overscan"],
+          "deprecated": false
+        },
+        {
+          "name": "data",
+          "type": "T[] | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "columns",
+          "type": "TableColumn<T, unknown>[] | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "caption",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "expanded"
+        },
+        {
+          "name": "empty"
+        },
+        {
+          "name": "loading"
+        },
+        {
+          "name": "caption"
+        },
+        {
+          "name": "top"
+        },
+        {
+          "name": "bottom"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    },
+    "UTabs": {
+      "name": "UTabs",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\" | undefined",
+          "required": false,
+          "description": "The orientation of the tabs.",
+          "enum": ["horizontal", "vertical"],
+          "deprecated": false
+        },
+        {
+          "name": "content",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "The content of the tabs, can be disabled to prevent rendering the content.",
+          "deprecated": false
+        },
+        {
+          "name": "valueKey",
+          "type": "GetItemKeys<T> | undefined",
+          "required": false,
+          "description": "The key used to get the value from the item.",
+          "deprecated": false
+        },
+        {
+          "name": "labelKey",
+          "type": "GetItemKeys<T> | undefined",
+          "required": false,
+          "description": "The key used to get the label from the item.",
+          "deprecated": false
+        },
+        {
+          "name": "items",
+          "type": "T[] | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"error\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["primary", "secondary", "success", "info", "warning", "error", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"pill\" | \"link\" | undefined",
+          "required": false,
+          "enum": ["pill", "link"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"xs\" | \"md\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["sm", "xs", "md", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; list?: ClassNameValue; indicator?: ClassNameValue; trigger?: ClassNameValue; leadingIcon?: ClassNameValue; leadingAvatar?: ClassNameValue; leadingAvatarSize?: ClassNameValue; label?: ClassNameValue; trailingBadge?: ClassNameValue; trailingBadgeSize?: ClassNameValue; content?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "leading"
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "trailing"
+        },
+        {
+          "name": "content"
+        },
+        {
+          "name": "leading"
+        },
+        {
+          "name": "trailing"
+        }
+      ],
+      "events": [
+        {
+          "name": "modelValue"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UTextarea": {
+      "name": "UTextarea",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string | undefined",
+          "required": false,
+          "description": "The placeholder text when the textarea is empty.",
+          "deprecated": false
+        },
+        {
+          "name": "autofocusDelay",
+          "type": "number | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "autoresizeDelay",
+          "type": "number | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "rows",
+          "type": "number | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "maxrows",
+          "type": "number | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "highlight",
+          "type": "boolean | undefined",
+          "required": false,
+          "description": "Highlight the ring color like a focus state.",
+          "deprecated": false
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "name",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "color",
+          "type": "\"primary\" | \"secondary\" | \"success\" | \"info\" | \"warning\" | \"error\" | \"neutral\" | undefined",
+          "required": false,
+          "enum": ["primary", "secondary", "success", "info", "warning", "error", "neutral"],
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "type": "\"outline\" | \"soft\" | \"subtle\" | \"ghost\" | \"none\" | undefined",
+          "required": false,
+          "enum": ["outline", "soft", "subtle", "ghost", "none"],
+          "deprecated": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | undefined",
+          "required": false,
+          "enum": ["xs", "sm", "md", "lg", "xl"],
+          "deprecated": false
+        },
+        {
+          "name": "required",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "autofocus",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "autoresize",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "modelValue",
+          "type": "T | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "T | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "modelModifiers",
+          "type": "ModelModifiers<T> | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ui",
+          "type": "{ root?: ClassNameValue; base?: ClassNameValue; leading?: ClassNameValue; leadingIcon?: ClassNameValue; leadingAvatar?: ClassNameValue; leadingAvatarSize?: ClassNameValue; trailing?: ClassNameValue; trailingIcon?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "leading"
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "trailing"
+        }
+      ],
+      "events": [
+        {
+          "name": "modelValue"
+        },
+        {
+          "name": "blur"
+        },
+        {
+          "name": "change"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UTooltip": {
+      "name": "UTooltip",
+      "props": [
+        {
+          "name": "text",
+          "type": "string | undefined",
+          "required": false,
+          "description": "The text content of the tooltip.",
+          "deprecated": false
+        },
+        {
+          "name": "kbds",
+          "type": "(string | undefined)[] | KbdProps[] | undefined",
+          "required": false,
+          "description": "The keyboard keys to display in the tooltip.",
+          "deprecated": false
+        },
+        {
+          "name": "content",
+          "type": "(Omit<TooltipContentProps, \"as\" | \"asChild\"> & Partial<EmitsToProps<TooltipContentImplEmits>>) | undefined",
+          "required": false,
+          "description": "The content of the tooltip.",
+          "enum": ["as", "asChild"],
+          "deprecated": false
+        },
+        {
+          "name": "arrow",
+          "type": "boolean | Omit<TooltipArrowProps, \"as\" | \"asChild\"> | undefined",
+          "required": false,
+          "description": "Display an arrow alongside the tooltip.",
+          "enum": ["as", "asChild"],
+          "deprecated": false
+        },
+        {
+          "name": "portal",
+          "type": "string | boolean | HTMLElement | undefined",
+          "required": false,
+          "description": "Render the tooltip in a portal.",
+          "deprecated": false
+        },
+        {
+          "name": "reference",
+          "type": "ReferenceElement | undefined",
+          "required": false,
+          "description": "The reference (or anchor) element that is being referred to for positioning.",
+          "deprecated": true,
+          "replacedBy": "the"
+        },
+        {
+          "name": "ui",
+          "type": "{ content?: ClassNameValue; arrow?: ClassNameValue; text?: ClassNameValue; kbds?: ClassNameValue; kbdsSize?: ClassNameValue",
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "content"
+        }
+      ],
+      "events": [
+        {
+          "name": "open"
+        }
+      ],
+      "requiresAppWrapper": false
+    },
+    "UUser": {
+      "name": "UUser",
+      "props": [
+        {
+          "name": "as",
+          "type": "any",
+          "required": false,
+          "description": "The element or component this component should render as.",
+          "deprecated": false
+        },
+        {
+          "name": "name",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "description",
+          "type": "string | undefined",
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "avatar",
+          "type": "(Omit<AvatarProps, \"size\"> & { [key: string]: any",
+          "required": false,
+          "enum": ["size"],
+          "deprecated": false
+        }
+      ],
+      "slots": [
+        {
+          "name": "avatar"
+        },
+        {
+          "name": "name"
+        },
+        {
+          "name": "description"
+        },
+        {
+          "name": "default"
+        }
+      ],
+      "events": [],
+      "requiresAppWrapper": false
+    }
+  }
+}

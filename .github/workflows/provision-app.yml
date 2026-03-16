@@ -1,0 +1,258 @@
+name: Provision App
+
+on:
+  workflow_dispatch:
+    inputs:
+      app-name:
+        description: "Lowercase kebab-case app slug (e.g. my-cool-app)"
+        required: true
+        type: string
+      display-name:
+        description: "Human-readable display name (e.g. My Cool App)"
+        required: true
+        type: string
+      app-url:
+        description: "Production URL (e.g. https://my-cool-app.nard.uk)"
+        required: true
+        type: string
+      github-repo:
+        description: "Full GitHub repo path (e.g. narduk-enterprises/my-cool-app)"
+        required: true
+        type: string
+      provision-id:
+        description: "Control plane provision job ID for status callbacks"
+        required: true
+        type: string
+      # Pre-provisioned by Control Plane API (skip if provided)
+      d1-database-id:
+        description: "Pre-provisioned D1 database UUID (skip D1 creation in init.ts)"
+        required: false
+        type: string
+        default: ""
+      d1-database-name:
+        description: "Pre-provisioned D1 database name"
+        required: false
+        type: string
+        default: ""
+      ga-property-id:
+        description: "Pre-provisioned GA4 property ID (skip analytics in init.ts)"
+        required: false
+        type: string
+        default: ""
+      ga-measurement-id:
+        description: "Pre-provisioned GA4 measurement ID (G-XXXXXXX)"
+        required: false
+        type: string
+        default: ""
+      gsc-verification-file:
+        description: "GSC verification filename (e.g. google1234.html)"
+        required: false
+        type: string
+        default: ""
+      gsc-verification-content:
+        description: "GSC verification file content"
+        required: false
+        type: string
+        default: ""
+      indexnow-key:
+        description: "Pre-generated IndexNow API key"
+        required: false
+        type: string
+        default: ""
+
+concurrency:
+  group: provision-${{ github.event.inputs.app-name }}
+  cancel-in-progress: false
+
+env:
+  NUXT_TELEMETRY_DISABLED: 1
+  NODE_OPTIONS: "--max-old-space-size=4096"
+
+jobs:
+  provision:
+    name: "Provision ${{ github.event.inputs.app-name }}"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      # ── Setup ──
+      - name: Validate inputs
+        run: |
+          if ! echo "${{ inputs.app-name }}" | grep -qP '^[a-z0-9][a-z0-9-]*$'; then
+            echo "::error::Invalid app-name: must match /^[a-z0-9][a-z0-9-]*$/"
+            exit 1
+          fi
+          echo "📦 Provisioning: ${{ inputs.display-name }} (${{ inputs.app-name }})"
+          echo "   URL: ${{ inputs.app-url }}"
+          echo "   Repo: ${{ inputs.github-repo }}"
+          echo "   Provision ID: ${{ inputs.provision-id }}"
+
+      - name: Update provision status → cloning
+        run: |
+          curl -sf -X POST \
+            "${{ secrets.CONTROL_PLANE_URL }}/api/fleet/provision/${{ inputs.provision-id }}/status" \
+            -H "Authorization: Bearer ${{ secrets.PROVISION_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"status": "cloning"}' \
+            || echo "⚠️ Status update failed (non-fatal)"
+
+      # ── Clone template into the new repo ──
+      - uses: actions/checkout@v4
+        with:
+          path: app-source
+
+      - name: Prepare new repository
+        run: |
+          cd app-source
+          rm -rf .git
+          git init
+          git remote add origin "https://x-access-token:${{ secrets.GH_SERVICE_TOKEN }}@github.com/${{ inputs.github-repo }}.git"
+
+      # ── Install + Setup ──
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: app-source/package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Configure GitHub Packages auth
+        working-directory: app-source
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PACKAGES_TOKEN }}" >> .npmrc
+
+      - name: Install dependencies
+        working-directory: app-source
+        run: pnpm install --no-frozen-lockfile
+
+      # ── Fetch secrets BEFORE init (needed for wrangler D1 provisioning + deploy) ──
+      - name: Fetch secrets from Doppler
+        uses: dopplerhq/secrets-fetch-action@v1.3.1
+        with:
+          doppler-token: ${{ secrets.DOPPLER_TOKEN }}
+          inject-env-vars: true
+
+      - name: Update provision status → initializing
+        run: |
+          curl -sf -X POST \
+            "${{ secrets.CONTROL_PLANE_URL }}/api/fleet/provision/${{ inputs.provision-id }}/status" \
+            -H "Authorization: Bearer ${{ secrets.PROVISION_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"status": "initializing"}' \
+            || echo "⚠️ Status update failed (non-fatal)"
+
+      - name: Run init.ts (setup script)
+        working-directory: app-source
+        env:
+          # Pre-provisioned by Control Plane API — init.ts skips these steps
+          PROVISION_ID: ${{ inputs.provision-id }}
+          D1_DATABASE_ID: ${{ inputs.d1-database-id }}
+          D1_DATABASE_NAME: ${{ inputs.d1-database-name }}
+          GA_PROPERTY_ID: ${{ inputs.ga-property-id }}
+          GA_MEASUREMENT_ID: ${{ inputs.ga-measurement-id }}
+          INDEXNOW_KEY: ${{ inputs.indexnow-key }}
+          DOPPLER_PRE_PROVISIONED: ${{ inputs.d1-database-id != '' && 'true' || '' }}
+        run: |
+          pnpm run setup -- \
+            --name="${{ inputs.app-name }}" \
+            --display="${{ inputs.display-name }}" \
+            --url="${{ inputs.app-url }}"
+
+      # ── Write GSC verification file if pre-provisioned ──
+      - name: Write GSC verification file
+        if: inputs.gsc-verification-file != ''
+        working-directory: app-source
+        run: |
+          mkdir -p apps/web/public
+          echo '${{ inputs.gsc-verification-content }}' > "apps/web/public/${{ inputs.gsc-verification-file }}"
+          # Also write no-extension fallback (Cloudflare Pages may strip .html)
+          NOEXT=$(echo "${{ inputs.gsc-verification-file }}" | sed 's/.html$//')
+          if [ "$NOEXT" != "${{ inputs.gsc-verification-file }}" ]; then
+            echo '${{ inputs.gsc-verification-content }}' > "apps/web/public/$NOEXT"
+          fi
+          echo "✅ GSC verification file written: ${{ inputs.gsc-verification-file }}"
+
+      # ── Initial commit + push ──
+      - name: Strip .npmrc auth token before commit
+        working-directory: app-source
+        run: sed -i '/_authToken/d' .npmrc
+
+      - name: Commit and push
+        working-directory: app-source
+        run: |
+          git add -A
+          git config user.name "narduk-bot"
+          git config user.email "bot@nard.uk"
+          git commit -m "chore: initialize ${{ inputs.app-name }} from where-run"
+          git branch -M main
+          git push --force -u origin main
+
+      - name: Update provision status → deploying
+        run: |
+          curl -sf -X POST \
+            "${{ secrets.CONTROL_PLANE_URL }}/api/fleet/provision/${{ inputs.provision-id }}/status" \
+            -H "Authorization: Bearer ${{ secrets.PROVISION_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"status": "deploying"}' \
+            || echo "⚠️ Status update failed (non-fatal)"
+
+      # ── Build + Deploy ──
+      - name: Build and deploy
+        working-directory: app-source/apps/web
+        run: |
+          pnpm build
+          pnpm exec wrangler deploy
+
+      # ── Post-deploy: GSC verification (only if pre-provisioned) ──
+      - name: Verify GSC ownership (post-deploy)
+        if: inputs.gsc-verification-file != ''
+        working-directory: app-source
+        continue-on-error: true
+        env:
+          DOPPLER_PROJECT: ${{ inputs.app-name }}
+          DOPPLER_CONFIG: prd
+        run: |
+          if [ -f "tools/setup-analytics.ts" ]; then
+            npx jiti tools/setup-analytics.ts gsc:verify || echo "⚠️ GSC verification deferred — site may not be live yet"
+          fi
+
+      - name: Run analytics setup (post-deploy, fallback)
+        if: inputs.ga-property-id == ''
+        working-directory: app-source
+        continue-on-error: true
+        env:
+          DOPPLER_PROJECT: ${{ inputs.app-name }}
+          DOPPLER_CONFIG: prd
+          APP_NAME: ${{ inputs.app-name }}
+        run: |
+          if [ -f "tools/setup-analytics.ts" ]; then
+            npx jiti tools/setup-analytics.ts all || echo "⚠️ Analytics setup deferred"
+          fi
+
+      # ── Callback to control plane ──
+      - name: Report success
+        if: success()
+        run: |
+          curl -sf -X POST \
+            "${{ secrets.CONTROL_PLANE_URL }}/api/fleet/provision/${{ inputs.provision-id }}/complete" \
+            -H "Authorization: Bearer ${{ secrets.PROVISION_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"status\": \"complete\",
+              \"deployedUrl\": \"${{ inputs.app-url }}\",
+              \"githubRepo\": \"${{ inputs.github-repo }}\"
+            }"
+
+      - name: Report failure
+        if: failure()
+        run: |
+          curl -sf -X POST \
+            "${{ secrets.CONTROL_PLANE_URL }}/api/fleet/provision/${{ inputs.provision-id }}/complete" \
+            -H "Authorization: Bearer ${{ secrets.PROVISION_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"status\": \"failed\",
+              \"errorMessage\": \"Provisioning failed — check GitHub Actions logs for ${{ github.run_id }}\"
+            }"

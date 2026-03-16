@@ -1,0 +1,52 @@
+{
+  "name": "eslint-plugin-vue-official-best-practices",
+  "version": "1.0.0",
+  "description": "ESLint plugin to enforce Vue 3 best practices (Composition API + script setup) based on official Vue documentation",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepare": "tsup"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "vue",
+    "vue3",
+    "composition-api",
+    "script-setup",
+    "pinia",
+    "linting"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "eslint": "^8.0.0 || ^9.0.0",
+    "vue-eslint-parser": "^9.0.0"
+  },
+  "dependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^8.56.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18",
+    "vue-eslint-parser": "^10.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

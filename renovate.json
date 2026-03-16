@@ -1,0 +1,76 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "group:monorepo", ":maintainLockFilesWeekly"],
+  "schedule": ["before 9am on monday"],
+  "labels": ["dependencies"],
+  "rangeStrategy": "bump",
+  "ignorePaths": ["**/node_modules/**", ".agents/**"],
+  "packageRules": [
+    {
+      "description": "Group all Nuxt ecosystem packages together to avoid partial upgrades",
+      "groupName": "nuxt ecosystem",
+      "matchPackagePatterns": ["^nuxt", "^@nuxt/", "^@nuxtjs/", "^vue", "^@vue/", "^vue-tsc"],
+      "automerge": false
+    },
+    {
+      "description": "Group Cloudflare tooling — wrangler, workers-types, nitro presets",
+      "groupName": "cloudflare tooling",
+      "matchPackagePatterns": ["^wrangler", "^@cloudflare/", "^nitro-cloudflare", "^workerd"],
+      "automerge": false
+    },
+    {
+      "description": "Group Drizzle ORM + kit together",
+      "groupName": "drizzle",
+      "matchPackagePatterns": ["^drizzle-"],
+      "automerge": false
+    },
+    {
+      "description": "Group Tailwind CSS ecosystem",
+      "groupName": "tailwindcss",
+      "matchPackagePatterns": ["^tailwindcss", "^@tailwindcss/"],
+      "automerge": false
+    },
+    {
+      "description": "Group test tooling (Vitest, Playwright, test-utils)",
+      "groupName": "testing",
+      "matchPackagePatterns": [
+        "^vitest",
+        "^@playwright/",
+        "^playwright$",
+        "^happy-dom",
+        "^@nuxt/test-utils",
+        "^@vue/test-utils"
+      ],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Group ESLint ecosystem",
+      "groupName": "eslint",
+      "matchPackagePatterns": ["^eslint", "^@eslint/"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Auto-merge patch updates for low-risk packages (excludes grouped ecosystems)",
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "excludePackagePatterns": [
+        "^nuxt",
+        "^@nuxt/",
+        "^@nuxtjs/",
+        "^wrangler",
+        "^@cloudflare/",
+        "^drizzle-",
+        "^tailwindcss",
+        "^@tailwindcss/"
+      ]
+    },
+    {
+      "description": "Pin Nuxt UI 4 — known for breaking changes within minors",
+      "matchPackageNames": ["@nuxt/ui"],
+      "rangeStrategy": "pin"
+    }
+  ]
+}

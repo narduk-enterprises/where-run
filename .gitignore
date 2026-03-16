@@ -1,0 +1,51 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+.turbo
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files — use Doppler, not .env files
+.env
+.env.*
+
+# Cloudflare
+.wrangler/
+
+# Drizzle local SQLite (created by drizzle-kit push)
+**/drizzle/*.sqlite
+
+# Build artifacts
+*.bak
+
+# Test artifacts
+playwright-report/
+test-results/
+
+# ESLint plugin build artifacts (rebuilt via `pnpm run build:plugins`)
+packages/eslint-config/*/dist/
+# ESLint caches
+.eslint-results.json
+
+# Secrets & credential artifacts (use Doppler, never commit these)
+*-secrets.json
+*.jsonl
+doppler.json
+doppler.yaml
+lint-results.txt
+
+# Python cache (uipro skill)
+__pycache__/

@@ -1,0 +1,92 @@
+{
+  "name": "where-run",
+  "version": "1.17.2",
+  "private": true,
+  "packageManager": "pnpm@10.28.0",
+  "scripts": {
+    "predev": "node tools/check-setup.cjs",
+    "dev": "pnpm --filter where-run dev",
+    "prebuild": "node tools/check-setup.cjs",
+    "build": "doppler run -- pnpm -r build",
+    "preship": "node tools/check-setup.cjs && pnpm install --frozen-lockfile && npx tsx tools/check-drift-ci.ts && npx tsx tools/check-sync-health.ts && pnpm run quality && pnpm -r --if-present test:unit",
+    "ship": "npx tsx tools/ship.ts",
+    "ship:fleet": "npx tsx tools/ship-fleet.ts",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "quality": "pnpm run quality:fix && turbo run quality --filter='./apps/*' --filter='./layers/*' --filter='./packages/*'",
+    "quality:fix": "turbo run lint --force -- --fix && pnpm run format",
+    "check": "pnpm run quality",
+    "quality:fleet": "bash scripts/fleet-quality.sh",
+    "sync:fleet": "npx tsx tools/sync-fleet.ts",
+    "sync:fleet:fast": "npx tsx tools/sync-fleet.ts --skip-quality --auto-commit --concurrency=8",
+    "sync:fleet:dry": "npx tsx tools/sync-fleet.ts --dry-run",
+    "status:fleet": "bash scripts/fleet-status.sh",
+    "setup": "npx tsx tools/init.ts",
+    "update-layer": "npx tsx tools/update-layer.ts",
+    "sync-template": "npx tsx tools/sync-template.ts",
+    "migrate-to-org": "npx tsx tools/migrate-to-org.ts",
+    "validate": "npx tsx tools/validate.ts",
+    "check:sync-health": "npx tsx tools/check-sync-health.ts",
+    "check:reach": "npx tsx tools/check-apps-reachable.ts",
+    "check:fleet-doppler": "doppler run -- npx tsx tools/validate-fleet-doppler.ts",
+    "validate:fleet": "npx tsx tools/validate-fleet.ts",
+    "backfill:packages-read": "doppler run -- npx tsx tools/backfill-github-packages-read.ts",
+    "tail:fleet": "npx tsx tools/tail-fleet.ts",
+    "fetch:fleet": "npx tsx tools/fetch-fleet.ts",
+    "backfill:secrets": "doppler run -- npx tsx tools/backfill-secrets.ts",
+    "clean": "find . -type d \\( -name node_modules -o -name .nuxt -o -name .output -o -name .nitro -o -name .wrangler -o -name .turbo -o -name .data -o -name dist \\) -not -path './.git/*' -prune -exec rm -rf {} +",
+    "clean:install": "pnpm run clean && pnpm install && pnpm run db:ready:all",
+    "db:migrate": "pnpm --filter where-run run db:migrate",
+    "dev:kill": "sh scripts/dev-kill.sh",
+    "test:e2e": "playwright test",
+    "test:e2e:web": "pnpm --filter where-run test:e2e",
+    "generate:favicons": "npx tsx tools/generate-favicons.ts",
+    "format": "prettier --write \"**/*.{ts,mts,vue,js,mjs,json,yaml,yml,css,md}\" --ignore-path .gitignore",
+    "format:check": "prettier --check \"**/*.{ts,mts,vue,js,mjs,json,yaml,yml,css,md}\" --ignore-path .gitignore"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild": ">=0.25.0",
+      "serialize-javascript": ">=7.0.3",
+      "@cloudflare/unenv-preset": "2.12.1",
+      "nuxt-og-image": "6.0.0-beta.47",
+      "@takumi-rs/core": ">=0.70.1",
+      "@takumi-rs/wasm": ">=0.70.1",
+      "@cloudflare/workers-types": "4.20260307.1",
+      "@typescript-eslint/utils": "^8.57.0",
+      "@nuxt/eslint": "^1.15.2",
+      "eslint-plugin-unicorn": "^63.0.0"
+    },
+    "peerDependencyRules": {
+      "allowAny": [
+        "eslint",
+        "citty",
+        "@cloudflare/workers-types"
+      ]
+    },
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "better-sqlite3",
+      "core-js",
+      "esbuild",
+      "protobufjs",
+      "sharp",
+      "unrs-resolver",
+      "vue-demi",
+      "workerd"
+    ]
+  },
+  "volta": {
+    "node": "22.22.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.19.13",
+    "concurrently": "^9.2.1",
+    "googleapis": "^171.4.0",
+    "prettier": "^3.8.1",
+    "sharp": "^0.34.5",
+    "tsx": "^4.21.0",
+    "turbo": "^2.8.12"
+  }
+}

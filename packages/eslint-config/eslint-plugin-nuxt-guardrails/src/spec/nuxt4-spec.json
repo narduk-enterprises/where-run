@@ -1,0 +1,37 @@
+{
+  "version": "4.2.2",
+  "generatedAt": "2026-01-22T23:54:14.238Z",
+  "apis": {
+    "useAsyncData": {
+      "name": "useAsyncData",
+      "docUrl": "https://nuxt.com/raw/docs/4.x/getting-started/upgrade.md",
+      "usage": [],
+      "options": {}
+    },
+    "useFetch": {
+      "name": "useFetch",
+      "docUrl": "https://nuxt.com/raw/docs/4.x/getting-started/upgrade.md",
+      "usage": [],
+      "options": {}
+    },
+    "useLazyAsyncData": {
+      "name": "useLazyAsyncData",
+      "docUrl": "https://nuxt.com/raw/docs/4.x/getting-started/upgrade.md",
+      "usage": [],
+      "options": {}
+    },
+    "useLazyFetch": {
+      "name": "useLazyFetch",
+      "docUrl": "https://nuxt.com/raw/docs/4.x/getting-started/upgrade.md",
+      "usage": [],
+      "options": {}
+    },
+    "definePageMeta": {
+      "name": "definePageMeta",
+      "docUrl": "https://nuxt.com/raw/docs/4.x/getting-started/upgrade.md",
+      "usage": [],
+      "options": {}
+    }
+  },
+  "deprecations": {}
+}

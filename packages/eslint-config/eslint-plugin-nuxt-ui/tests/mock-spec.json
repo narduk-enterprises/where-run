@@ -1,0 +1,49 @@
+{
+  "version": "4.0.0",
+  "generatedAt": "2026-02-27T00:00:00.000Z",
+  "components": {
+    "UButton": {
+      "name": "UButton",
+      "props": [
+        { "name": "oldProp", "type": "string", "deprecated": true },
+        {
+          "name": "padded",
+          "type": "boolean",
+          "deprecated": true,
+          "replacedBy": ":ui=\"{ root: 'p-0' }\""
+        },
+        { "name": "variant", "type": "string", "enum": ["solid", "outline", "soft"] },
+        { "name": "color", "type": "string", "enum": ["primary", "gray", "red"] }
+      ],
+      "slots": [],
+      "events": []
+    },
+    "UAvatar": {
+      "name": "UAvatar",
+      "props": [
+        { "name": "alt", "type": "string", "deprecated": true, "replacedBy": "text" },
+        { "name": "text", "type": "string" }
+      ],
+      "slots": [],
+      "events": []
+    },
+    "USelectMenu": {
+      "name": "USelectMenu",
+      "props": [],
+      "slots": [],
+      "events": [
+        { "name": "change", "deprecated": true, "replacedBy": "update:model-value" },
+        { "name": "update:model-value" }
+      ]
+    },
+    "UTabs": {
+      "name": "UTabs",
+      "props": [],
+      "slots": [
+        { "name": "item", "deprecated": true, "replacedBy": "content" },
+        { "name": "content" }
+      ],
+      "events": []
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    // ── Formatting & Linting ───────────────────────────────────────────────────
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+
+    // ── Vue / Nuxt ────────────────────────────────────────────────────────────
+    "vue.volar",
+
+    // ── TypeScript ────────────────────────────────────────────────────────────
+    "ms-vscode.vscode-typescript-next",
+
+    // ── CSS / Tailwind ────────────────────────────────────────────────────────
+    "bradlc.vscode-tailwindcss",
+
+    // ── Editor quality-of-life ────────────────────────────────────────────────
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens"
+  ]
+}

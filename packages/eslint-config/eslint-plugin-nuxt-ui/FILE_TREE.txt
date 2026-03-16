@@ -1,0 +1,34 @@
+eslint-plugin-nuxt-ui/
+├── .eslintrc.cjs                    # ESLint config for plugin itself
+├── .gitignore                        # Git ignore rules
+├── DESIGN.md                         # Design documentation
+├── FILE_TREE.txt                     # This file
+├── INTEGRATION.md                    # Integration guide for Nuxt projects
+├── README.md                         # Main documentation
+├── package.json                      # NPM package configuration
+├── tsconfig.json                     # TypeScript configuration
+├── tsup.config.ts                    # Build configuration (ESM + CJS)
+│
+├── src/
+│   ├── index.ts                      # Plugin entry point
+│   ├── types.ts                      # TypeScript type definitions
+│   │
+│   ├── rules/                        # ESLint rules
+│   │   ├── no-unknown-component-prop.ts
+│   │   ├── no-deprecated-prop.ts
+│   │   ├── no-deprecated-slot.ts
+│   │   ├── no-deprecated-event.ts
+│   │   └── require-valid-variant-values.ts
+│   │
+│   ├── utils/                        # Utility functions
+│   │   ├── component-utils.ts        # Component name normalization
+│   │   └── spec-loader.ts           # Spec JSON loader
+│   │
+│   └── spec/
+│       └── nuxt-ui-v4.json          # Generated component specs (git-ignored, generated)
+│
+├── scripts/
+│   └── gen-spec.ts                  # Spec generator from llms-full.txt
+│
+└── tests/                           # Test files
+    └── no-unknown-component-prop.test.ts

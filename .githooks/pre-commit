@@ -1,0 +1,42 @@
+#!/bin/sh
+#
+# Pre-commit hook: Prevent lockfile drift
+# Ensures pnpm-lock.yaml is updated when dependency-related fields in package.json change.
+# Script-only edits (e.g. changing a "scripts" entry) do NOT require a lockfile update.
+#
+# Install: git config core.hooksPath .githooks
+# This hook is automatically synced to all fleet apps by sync-template.ts.
+
+STAGED=$(git diff --cached --name-only)
+
+# Check if .npmrc changed (always affects lockfile)
+NPMRC_CHANGED=$(echo "$STAGED" | grep -E '(^|\/)\\.npmrc$' || true)
+
+# Check if any package.json changed
+PKG_FILES=$(echo "$STAGED" | grep -E '(^|\/)package\.json$' || true)
+
+# For package.json, only flag if dependency-related fields actually changed
+DEP_CHANGED=""
+if [ -n "$PKG_FILES" ]; then
+  for f in $PKG_FILES; do
+    # Check if the diff touches dependency-related keys
+    if git diff --cached -U0 "$f" 2>/dev/null | grep -qE '"(dependencies|devDependencies|peerDependencies|optionalDependencies|pnpm|overrides|resolutions|packageManager)"'; then
+      DEP_CHANGED="yes"
+      break
+    fi
+  done
+fi
+
+if [ -n "$DEP_CHANGED" ] || [ -n "$NPMRC_CHANGED" ]; then
+  LOCK_CHANGED=$(echo "$STAGED" | grep 'pnpm-lock.yaml' || true)
+  if [ -z "$LOCK_CHANGED" ]; then
+    echo ""
+    echo "⚠️  Lockfile drift detected!"
+    echo ""
+    echo "   Dependency fields in package.json or .npmrc changed but pnpm-lock.yaml was not updated."
+    echo "   Run: pnpm install --no-frozen-lockfile"
+    echo "   Then: git add pnpm-lock.yaml"
+    echo ""
+    exit 1
+  fi
+fi
