@@ -7,13 +7,28 @@
  */
 
 import { races } from '#server/database/schema'
-import { eq, and, gte, lte, like, sql, desc } from 'drizzle-orm'
+import { eq, and, gte, lte, like, sql } from 'drizzle-orm'
+import { z } from 'zod'
+
+const querySchema = z.object({
+  state: z.string().optional(),
+  city: z.string().optional(),
+  raceType: z.string().optional(),
+  startDate: z.string().optional(),
+  endDate: z.string().optional(),
+  q: z.string().optional(),
+  page: z.coerce.number().int().min(1).optional().default(1),
+  limit: z.coerce.number().int().min(1).max(100).optional().default(20),
+  includeVirtual: z.string().optional(),
+  includePast: z.string().optional(),
+})
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event) as Record<string, string | undefined>
+  const raw = getQuery(event)
+  const query = querySchema.parse(raw)
 
-  const page = Math.max(1, Number(query.page) || 1)
-  const limit = Math.min(100, Math.max(1, Number(query.limit) || 20))
+  const page = query.page
+  const limit = query.limit
   const offset = (page - 1) * limit
 
   const db = useDatabase(event)

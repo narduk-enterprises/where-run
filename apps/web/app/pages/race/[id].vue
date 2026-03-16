@@ -2,11 +2,11 @@
 const route = useRoute()
 const raceId = computed(() => String(route.params.id))
 
-const { fetchNearbyRaces } = useRaces()
+const { fetchRaceById, fetchNearbyRaces } = useRaces()
 const { toMapItems, createRacePin, defaultCenter } = useRaceMap()
 
 // Use await so SSR waits for data before rendering meta tags
-const { data: raceData, status } = await useFetch<{ race: any }>(`/api/races/${raceId.value}`)
+const { data: raceData, status } = await fetchRaceById(raceId.value)
 
 const race = computed(() => raceData.value?.race)
 
@@ -168,13 +168,13 @@ function formatShortDate(dateStr: string) {
       <!-- Content -->
       <div class="mx-auto max-w-4xl px-4 sm:px-6" style="margin-top: -2rem;">
         <!-- Breadcrumb -->
-        <nav class="mb-4 flex items-center gap-2 text-xs text-muted" aria-label="Breadcrumb">
+        <div class="mb-4 flex items-center gap-2 text-xs text-muted" role="navigation" aria-label="Breadcrumb">
           <NuxtLink to="/" class="hover:text-default transition-colors cursor-pointer">Home</NuxtLink>
           <UIcon name="i-lucide-chevron-right" class="size-3 text-dimmed" />
           <NuxtLink to="/search" class="hover:text-default transition-colors cursor-pointer">Search</NuxtLink>
           <UIcon name="i-lucide-chevron-right" class="size-3 text-dimmed" />
           <span class="text-default font-medium truncate max-w-[200px]">{{ race.name }}</span>
-        </nav>
+        </div>
 
         <!-- Header Card -->
         <div class="card-base p-6 sm:p-8 mb-6">

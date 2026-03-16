@@ -11,6 +11,17 @@ interface RaceWithDistance extends Race {
   distanceMiles?: number
 }
 
+interface StateRacesResponse {
+  state: string
+  races: Race[]
+  total: number
+  types: Array<{ type: string; count: number }>
+}
+
+interface CitiesResponse {
+  cities: Array<{ city: string; state: string; count: number }>
+}
+
 interface RacesResponse {
   races: Race[]
   pagination: {
@@ -60,10 +71,28 @@ export function useRaces() {
   }
 
   /**
-   * Fetch a single race by ID.
+   * Fetch a single race by ID or slug.
    */
-  function fetchRaceById(id: string) {
-    return useFetch<{ race: Race }>(`/api/races/${id}`)
+  function fetchRaceById(idOrSlug: string) {
+    return useFetch<{ race: Race }>(`/api/races/${idOrSlug}`)
+  }
+
+  /**
+   * Fetch races for a specific state (for state SEO pages).
+   */
+  function fetchRacesByStateCode(state: string) {
+    return useFetch<StateRacesResponse>(`/api/races/by-state/${state}`, {
+      key: `state-races-${state}`,
+    })
+  }
+
+  /**
+   * Fetch city aggregation (for city browsing pages).
+   */
+  function fetchCities(state?: string) {
+    const query: Record<string, string> = {}
+    if (state) query.state = state
+    return useFetch<CitiesResponse>('/api/races/cities', { query })
   }
 
   /**
@@ -87,5 +116,7 @@ export function useRaces() {
     fetchRaceById,
     fetchNearbyRaces,
     fetchRacesByState,
+    fetchRacesByStateCode,
+    fetchCities,
   }
 }

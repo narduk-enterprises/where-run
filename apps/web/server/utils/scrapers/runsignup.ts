@@ -55,6 +55,17 @@ function classifyRaceType(distanceMeters: number | null): string {
   return 'other'
 }
 
+/** Generate a URL-safe slug from race name, city, state, and date */
+function generateSlug(name: string, city: string, state: string, date: string): string {
+  const raw = `${name}-${city}-${state}-${date}`
+  return raw
+    .toLowerCase()
+    .replaceAll(/[^a-z0-9\s-]/g, '')
+    .replaceAll(/\s+/g, '-')
+    .replaceAll(/-+/g, '-')
+    .slice(0, 120) // keep slugs reasonable length
+}
+
 /** Convert RunSignUp distance + units to meters */
 function toMeters(distance?: number, units?: string): number | null {
   if (!distance) return null
@@ -98,6 +109,7 @@ function normalizeRace(raw: RunSignUpRace): NewRace | null {
 
   return {
     id: `runsignup_${raw.race_id}`,
+    slug: generateSlug(raw.name, city, state, date),
     name: raw.name,
     date,
     city,

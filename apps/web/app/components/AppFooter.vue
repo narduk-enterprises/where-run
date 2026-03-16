@@ -11,7 +11,7 @@
         </div>
 
         <!-- Links -->
-        <nav class="flex items-center gap-4 text-sm text-muted" aria-label="Footer navigation">
+        <div class="flex items-center gap-4 text-sm text-muted" role="navigation" aria-label="Footer navigation">
           <NuxtLink to="/search" class="transition-colors hover:text-default cursor-pointer">
             Search Races
           </NuxtLink>
@@ -21,7 +21,7 @@
           <NuxtLink to="/about" class="transition-colors hover:text-default cursor-pointer">
             About
           </NuxtLink>
-        </nav>
+        </div>
 
         <!-- Copyright -->
         <p class="text-xs text-dimmed">

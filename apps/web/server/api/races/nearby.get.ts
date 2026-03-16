@@ -6,39 +6,35 @@
  */
 
 import { races } from '#server/database/schema'
-import { sql, eq, gte } from 'drizzle-orm'
+import { sql } from 'drizzle-orm'
+import { z } from 'zod'
+
+const querySchema = z.object({
+  lat: z.coerce.number(),
+  lng: z.coerce.number(),
+  radius: z.coerce.number().min(1).max(200).optional().default(25),
+  limit: z.coerce.number().min(1).max(100).optional().default(50),
+})
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event) as Record<string, string | undefined>
-
-  const lat = Number(query.lat)
-  const lng = Number(query.lng)
-  const radiusMiles = Math.min(200, Math.max(1, Number(query.radius) || 25))
-  const limit = Math.min(100, Math.max(1, Number(query.limit) || 50))
-
-  if (Number.isNaN(lat) || Number.isNaN(lng)) {
+  const raw = getQuery(event)
+  const parsed = querySchema.safeParse(raw)
+  if (!parsed.success) {
     throw createError({
       statusCode: 400,
       message: 'lat and lng query parameters are required',
     })
   }
 
+  const { lat, lng, radius: radiusMiles, limit } = parsed.data
+
+
   const db = useDatabase(event)
 
   // Only show upcoming races
   const today = new Date().toISOString().split('T')[0] ?? ''
 
-  // Haversine distance formula in SQL (returns miles)
-  const distanceExpr = sql<number>`(
-    3959 * acos(
-      cos(radians(${lat})) * cos(radians(${races.latitude}))
-      * cos(radians(${races.longitude}) - radians(${lng}))
-      + sin(radians(${lat})) * sin(radians(${races.latitude}))
-    )
-  )`
-
-  // SQLite doesn't have native radians/acos, so we use a bounding box
-  // pre-filter then compute actual distance in JS
+  // Haversine — SQLite lacks trig functions, so use bounding box + JS
   const latRange = radiusMiles / 69 // ~69 miles per degree of latitude
   const lngRange = radiusMiles / (69 * Math.cos((lat * Math.PI) / 180))
 

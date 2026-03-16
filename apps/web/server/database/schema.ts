@@ -11,6 +11,7 @@ export * from '#layer/server/database/schema'
 // ─── Races — Canonical race records (deduplicated, enriched) ──
 export const races = sqliteTable('races', {
   id: text('id').primaryKey(),
+  slug: text('slug'), // SEO-friendly URL slug
   name: text('name').notNull(),
   date: text('date').notNull(), // ISO date: YYYY-MM-DD
   endDate: text('end_date'), // Multi-day events

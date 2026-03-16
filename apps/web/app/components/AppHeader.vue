@@ -32,7 +32,7 @@ function isActive(to: string) {
       </NuxtLink>
 
       <!-- Desktop Nav -->
-      <nav class="hidden items-center gap-1 sm:flex" aria-label="Main navigation">
+      <div class="hidden items-center gap-1 sm:flex" role="navigation" aria-label="Main navigation">
         <NuxtLink
           v-for="link in navLinks"
           :key="link.to"
@@ -47,7 +47,7 @@ function isActive(to: string) {
           <UIcon :name="link.icon" class="size-4" />
           {{ link.label }}
         </NuxtLink>
-      </nav>
+      </div>
 
       <!-- Mobile Menu Button -->
       <UButton
@@ -67,9 +67,10 @@ function isActive(to: string) {
       enter-from-class="opacity-0 -translate-y-2"
       leave-to-class="opacity-0 -translate-y-2"
     >
-      <nav
+      <div
         v-if="mobileMenuOpen"
         class="border-t border-default bg-default px-4 py-3 sm:hidden"
+        role="navigation"
         aria-label="Mobile navigation"
       >
         <NuxtLink
@@ -87,7 +88,7 @@ function isActive(to: string) {
           <UIcon :name="link.icon" class="size-4" />
           {{ link.label }}
         </NuxtLink>
-      </nav>
+      </div>
     </Transition>
   </div>
 </template>

@@ -5,7 +5,7 @@
  */
 
 import { races } from '#server/database/schema'
-import { sql, eq, gte } from 'drizzle-orm'
+import { sql } from 'drizzle-orm'
 
 export default defineEventHandler(async (event) => {
   const db = useDatabase(event)

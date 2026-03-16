@@ -10,6 +10,7 @@ const {
   hasFilters,
   clearFilters,
 } = useRaceSearch()
+const { fetchRaces } = useRaces()
 
 useSeo({
   title: 'Search Running Races — Where Run',
@@ -20,14 +21,13 @@ useSeo({
 })
 useWebPageSchema({ name: 'Race Search', description: 'Search running races across the United States with map-based discovery.' })
 
-// Reactive data fetch with computed query
-const { data, status } = useFetch('/api/races', {
-  query: activeFilters,
-  watch: [activeFilters],
+// Reactive data fetch via composable
+const { data, status } = fetchRaces({
+  ...activeFilters.value,
 })
 
-const races = computed(() => (data.value as any)?.races || [])
-const pagination = computed(() => (data.value as any)?.pagination || { page: 1, limit: 20, total: 0, totalPages: 0 })
+const races = computed(() => data.value?.races || [])
+const pagination = computed(() => data.value?.pagination || { page: 1, limit: 20, total: 0, totalPages: 0 })
 const mapItems = computed(() => toMapItems(races.value))
 
 // Read initial state from URL query
@@ -45,15 +45,8 @@ const stateOptions = computed(() => {
     label: name,
     value: abbr,
   }))
-  return [{ label: 'All States', value: '' }, ...states.sort((a, b) => a.label.localeCompare(b.label))]
+  return [{ label: 'All States', value: undefined }, ...states.sort((a, b) => a.label.localeCompare(b.label))]
 })
-
-function formatDate(dateStr: string) {
-  return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-  })
-}
 
 function daysUntil(dateStr: string) {
   const raceDate = new Date(dateStr + 'T00:00:00')
