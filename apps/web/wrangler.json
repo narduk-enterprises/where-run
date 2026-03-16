@@ -24,5 +24,8 @@
       "pattern": "where-run.nard.uk",
       "custom_domain": true
     }
-  ]
+  ],
+  "triggers": {
+    "crons": ["0 6 * * *"]
+  }
 }

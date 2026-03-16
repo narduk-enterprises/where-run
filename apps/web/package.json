@@ -9,7 +9,7 @@
     "dev": "pnpm run db:ready && (doppler run -- nuxt dev || nuxt dev)",
     "quality": "echo 'Turbo dependsOn handles lint + typecheck + format:check'",
     "db:migrate": "bash ../../tools/db-migrate.sh where-run-db --local --dir drizzle",
-    "db:seed": "wrangler d1 execute where-run-db --local --file=node_modules/@narduk-enterprises/narduk-nuxt-template-layer/drizzle/seed.sql",
+    "db:seed": "wrangler d1 execute where-run-db --local --file=node_modules/@narduk-enterprises/narduk-nuxt-template-layer/drizzle/seed.sql && wrangler d1 execute where-run-db --local --file=drizzle/seed.sql",
     "db:reset": "bash ../../tools/db-migrate.sh where-run-db --local --dir drizzle --reset && pnpm run db:seed",
     "db:studio": "drizzle-kit studio",
     "generate": "nuxt generate",

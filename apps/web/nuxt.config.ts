@@ -26,7 +26,8 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    // Server-only (admin API routes)
+    // Server-only
+    cronSecret: process.env.CRON_SECRET || '',
     googleServiceAccountKey: process.env.GSC_SERVICE_ACCOUNT_JSON || '',
     posthogApiKey: process.env.POSTHOG_PERSONAL_API_KEY || '',
     gaPropertyId: process.env.GA_PROPERTY_ID || '',
@@ -47,7 +48,7 @@ export default defineNuxtConfig({
     url: process.env.SITE_URL || 'https://where-run.nard.uk',
     name: 'Where Run',
     description:
-      'Where Run — powered by Nuxt 4 and Cloudflare Workers.',
+      'Discover running races across the United States. Search 5Ks, 10Ks, half marathons, marathons, ultras, and trail runs near you.',
     defaultLocale: 'en',
   },
 
